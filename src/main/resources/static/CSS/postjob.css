@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainDiv{
+    width:50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 100px;
+}
+.section{
+    width:100%;
+    height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+
+.titleDiv{
+    width: 100%;
+
+}
+
+.titleHeading{
+    font-size: 35px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    
+}
+
+.titleContent1,.titleContent2{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.aboutHeading,.aboutOrginationDeading{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.headingDiv,.typeDiv,.categoryDiv,.locationDiv,.employNameDiv,.logoDiv,.urlDiv,.emailDiv,.collaboratorSubDiv{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-bottom: 20px;
+}
+
+.headingDiv .subDiv1{
+    display: flex;
+    align-items: center;
+    
+}
+
+.headingDiv input,.locationDiv input:first-child,.employNameDiv input,.urlDiv input,.emailDiv input,.collaboratorSubDiv input{
+    width:100%;
+    height:40px;
+}
+
+.locationDiv input[type = checkbox]{
+    margin-top: 20px;
+    margin-right: 5px;
+}
+.jobParkDiv,.payDiv,.eqityDiv,.candidateDetailsDiv,.collHeading,.confHeading,.confirmationDiv,.warningHeading,.warningDiv,.descDiv{
+    width:100%;
+    margin-bottom: 20px;
+}
+
+.submitButton{
+    width:200px;
+    height:40px;
+    padding: 10px;
+}
+

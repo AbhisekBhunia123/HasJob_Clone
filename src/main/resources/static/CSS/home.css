@@ -1,0 +1,57 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbarDiv{
+    width:100%;
+    background-color: #eee;
+    width:50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.navHeadingDiv{
+    width:100%;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    padding: 10px;
+}
+
+.navFilterDiv{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.navFilterDiv{
+    padding:10px;
+}
+.dropdownBtn{
+    width: 200px;
+    border: 1px solid black;
+}
+
+.filterSection{
+    padding: 20px;
+}
+
+.filterSectionDiv{
+    padding:30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.jobSection{
+    padding: 20px;
+}
+
+.jobDiv{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.card{
+    margin-bottom: 20px;
+}
+

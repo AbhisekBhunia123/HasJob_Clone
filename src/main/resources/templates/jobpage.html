@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.navbarDiv {
+			width: 100%;
+			background-color: #eee;
+			width: 50px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+
+		.navHeadingDiv {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 80% 20%;
+			padding: 10px;
+		}
+
+		.navFilterDiv {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 20% 20% 20% 20% 20%;
+		}
+
+		.navFilterDiv {
+			padding: 10px;
+		}
+
+		.dropdownBtn {
+			width: 200px;
+			border: 1px solid black;
+		}
+
+		.filterSection {
+			padding: 20px;
+		}
+
+		.filterSectionDiv {
+			padding: 30px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+
+		.jobSection {
+			padding: 20px;
+		}
+
+		.card {
+			margin-bottom: 20px;
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+	<div>
+		<div>
+			<div class="container-fluid navbarDiv">
+				<div class="container navHeadingDiv">
+					<div class="navHeading">
+						<img src="" /><span>The Hasgeek Job Board</span>
+					</div>
+					<div class="navPost">
+						<button class="btn btn-small"
+							style="border: 1px solid gray;height:30px;padding:5px;background-color:purple;color: white;">Post
+							a Job</button>
+						<button class="btn btn-small"
+							style="border: 1px solid gray;height:30px;padding:5px;background-color:green;color: white;">Login</button>
+						<span><i class="fa fa-th" aria-hidden="true" style="font-size: 20px;color: black;"></i></span>
+					</div>
+				</div>
+				<div class="container navFilterDiv">
+					<div class="dropdown">
+						<button class="btn dropdown-toggle dropdownBtn bg-light" style="border: 1px solid gray;"
+							type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							Dropdown button
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="#">Action</a></li>
+							<li><a class="dropdown-item" href="#">Another action</a></li>
+							<li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<button class="btn dropdown-toggle dropdownBtn bg-light" style="border: 1px solid gray;"
+							type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							Dropdown button
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="#">Action</a></li>
+							<li><a class="dropdown-item" href="#">Another action</a></li>
+							<li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<button class="btn  dropdown-toggle dropdownBtn bg-light" style="border: 1px solid gray;"
+							type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							Dropdown button
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="#">Action</a></li>
+							<li><a class="dropdown-item" href="#">Another action</a></li>
+							<li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</div>
+					<div class="dropdown">
+						<button class="btn dropdown-toggle dropdownBtn bg-light" style="border: 1px solid gray;"
+							type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							Dropdown button
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							<li><a class="dropdown-item" href="#">Action</a></li>
+							<li><a class="dropdown-item" href="#">Another action</a></li>
+							<li><a class="dropdown-item" href="#">Something else here</a></li>
+						</ul>
+					</div>
+					<div class="searchBtn">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="container">
+			<div class="headingDiv">
+				<p>Full Stack Engineer at Cognochain</p>
+				<small>Posted 23 October 2023 by HR@Cognochain</small>
+				<p>Cognochain , Hyderabad · cognochain.com · Full-time employment · Programming</p>
+			</div>
+			<div>
+				<div class="aboutEmpany">
+					<p>Cognochain - Pioneering the Future with AI</p>
+					<p>At Cognochain, we’re not just building products; we’re reimagining the fabric of industries.
+						Situated at the nexus of enterprise productivity, healthcare, and logistics, we harness the
+						limitless potential of AI to craft solutions that redefine the future. We’re on a quest for
+						brilliant engineering minds, passionate about driving change and eager to shape the AI
+						landscape. If you’re seeking a challenge that’s both exhilarating and meaningful, Cognochain is
+						where your expertise can truly make a difference. Let’s innovate together</p>
+					<p>Job Description:</p>
+					<p> We are seeking a passionate Full Stack Developer with expertise in React.js, Next.js, and
+						Node.js to join our dynamic team at Cognochain
+						In this role, you will play a crucial part in building and maintaining our web platforms,
+						crafting amazing UIs, and ensuring top-notch performance, scalability, and integration with our
+						core AI technologies.</p>
+					<p>Responsibilities:</p>
+					<p>Design, develop, and maintain high-quality web applications using React.js, Next.js, and Node.js.
+
+						Collaborate with cross-functional teams to understand business requirements and translate them
+						into functional solutions.
+
+						Create beautiful, user-friendly UIs that enhance user experience and functionality.
+
+						Integrate AI technologies and third-party APIs to expand the platform's capabilities.
+
+						Optimize applications for performance, scalability, and security.
+
+						Write clean, maintainable, and reusable code, adhering to best practices and coding standards.
+
+						Debug and troubleshoot issues, providing timely resolution and improvements.
+
+						Participate in code reviews and contribute to the continuous improvement of development
+						processes.</p>
+					<p>Qualifications:</p>
+					<p>Bachelor's degree in Computer Science, Engineering, or a related field.
+
+						Proven experience developing web applications using React.js, Next.js, and Node.js.
+
+						Strong understanding of web technologies, such as HTML, CSS, and JavaScript.
+
+						Experience with database design and management using MongoDB or other NoSQL databases.
+
+						Familiarity with version control systems, such as Git.
+
+						Strong problem-solving skills and the ability to work both independently and collaboratively.
+
+						Passion for coding and creating user-friendly, visually appealing UIs.
+
+						Excellent communication and interpersonal skills.
+
+						Join Cognochain and be part of a passionate team, shaping the future of mind-machine interface
+						technology, and transforming industries through AI-driven innovations while creating impressive
+						and user-friendly UIs.</p>
+				</div>
+				<div class="socalMediaDiv">
+
+				</div>
+			</div>
+			<div>
+				<p></p>
+				<p></p>
+				<div class="appliNameDiv">
+					<div>
+						<p>Name</p>
+					</div>
+					<div>
+						<input type="text" name="empName" />
+						<p>You may edit your name from your profile</p>
+					</div>
+				</div>
+				<div class="appliEmailDiv">
+					<div>
+						<p>Name</p>
+					</div>
+					<div>
+						<input type="radio" name="empEmail" /><span>abhisekbhunia5@gmail.com</span>
+						<p>Add new email addresses from your profile</p>
+					</div>
+				</div>
+				<div class="appliPhoneDiv">
+					<div>
+						<p>Name</p>
+					</div>
+					<div>
+						<input type="text" name="empPhone" />
+						<p>A phone number the employer can reach you at</p>
+					</div>
+				</div>
+				<div>
+					<p>job application</p>
+					<textarea name="" rows="50" cols="100%">
+						
+					</textarea>
+					<p>Please provide all details the employer has requested. To add a resume, post it on LinkedIn or host the file on Dropbox and insert the link here</p>
+				</div>
+				<div>
+					<input type="checkbox" /><span>Optional: sign me up for a better Hasjob experience</span>
+					<p>Hasjob’s maintainers may contact you about new features and can see this application for reference</p>
+				</div>
+				<div>
+					<button></button>
+					<p>Note: Be selective about the jobs you apply for and mindful of the employer’s time. If too many employers report you for wasting their time with an irrelevant application, you will be barred from applying to more jobs. Employers can see how many other jobs you are applying to simultaneously and your status with them, but not which jobs you are applying to.</p>
+				</div>
+				<div>
+					<p>It is NOT OK for recruiters, HR consultants, and other intermediaries to contact this employer</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

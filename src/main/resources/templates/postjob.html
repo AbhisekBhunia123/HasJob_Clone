@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainDiv{
+    width:50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 100px;
+}
+.section{
+    width:100%;
+    height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+
+.titleDiv{
+    width: 100%;
+
+}
+
+.titleHeading{
+    font-size: 35px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    
+}
+
+.titleContent1,.titleContent2{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.aboutHeading,.aboutOrginationDeading{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+
+.headingDiv,.typeDiv,.categoryDiv,.locationDiv,.employNameDiv,.logoDiv,.urlDiv,.emailDiv,.collaboratorSubDiv{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-bottom: 20px;
+}
+
+.headingDiv .subDiv1{
+    display: flex;
+    align-items: center;
+    
+}
+
+.headingDiv input,.locationDiv input:first-child,.employNameDiv input,.urlDiv input,.emailDiv input,.collaboratorSubDiv input{
+    width:100%;
+    height:40px;
+}
+
+.locationDiv input[type = checkbox]{
+    margin-top: 20px;
+    margin-right: 5px;
+}
+.jobParkDiv,.payDiv,.eqityDiv,.candidateDetailsDiv,.collHeading,.confHeading,.confirmationDiv,.warningHeading,.warningDiv,.descDiv{
+    width:100%;
+    margin-bottom: 20px;
+}
+
+.submitButton{
+    width:200px;
+    height:40px;
+    padding: 10px;
+}
+
+
+	</style>
+</head>
+
+<body>
+	<div class="mainDiv">
+		<form method="post" action="/postjob" enctype="multipart/form-data">
+			<div class="section">
+				<div class="titleDiv">
+					<p class="titleHeading">Post a job</p>
+					<p class="titleContent1">Hasjob is visited by thousands of developers every month. Posts are valid
+						for 30 days.</p>
+					<p class="titleContent2">Attention, recruiters: You may NOT use this site to post jobs on behalf of
+						your clients. We accept posts for your own firm only. Please read the terms of service and ask
+						your clients to list for themselves.</p>
+				</div>
+				<hr>
+			</div>
+			<div class="section">
+				<p class="aboutHeading">First, tell us about the position</p>
+				<div class="headingDiv">
+					<div class="subDiv1">
+						<label for="">Headline</label>
+					</div>
+					<div class="subDiv2">
+						<input type="text" name="headline" />
+						<p>A single-line summary. This goes to the front page and across the network. A/B test it?</p>
+					</div>
+				</div>
+				<div class="headingDiv">
+					<div class="subDiv1">
+						<label for="">Headline B</label>
+					</div>
+					<div class="subDiv2">
+						<input type="text" name="headlineB" />
+						<p>An alternate headline that will be shown to 50%% of users. You’ll get a count of views per
+							headline</p>
+					</div>
+				</div>
+				<div class="typeDiv">
+					<div class="subDiv1">
+						<p>Type</p>
+					</div>
+					<div class="subDiv2">
+						<input type="radio" name="type" value="Full-time employment" /><span>Full-time employment</span>
+						<br>
+						<input type="radio" name="type" value="Short-term contract" /><span>Short-term contract</span>
+						<br>
+						<input type="radio" name="type" value="Internship" /><span>Internship</span>
+						<br>
+						<input type="radio" name="type" value="Freelance or consulting" /><span>Freelance or consulting</span>
+						<br>
+						<input type="radio" name="type" value="Volunteer contributor" /><span>Volunteer contributor</span>
+						<br>
+						<input type="radio" name="type" value="Partner for a venture" /><span>Partner for a venture </span>
+					</div>
+				</div>
+				<div class="categoryDiv">
+					<div class="subDiv1">
+						<p>Category</p>
+					</div>
+					<div class="subDiv2">
+						<input type="radio" name="category" value="Programming" /><span>Programming</span>
+						<br>
+						<input type="radio" name="category" value="Interaction Design" /><span>Interaction Design</span>
+						<br>
+						<input type="radio" name="category" value="Graphic Design" /><span>Graphic Design</span>
+						<br>
+						<input type="radio" name="category" value="Electronics" /><span>Electronics</span>
+						<br>
+						<input type="radio" name="category" value="Information Security" /><span>Information Security</span>
+						<br>
+						<input type="radio" name="category" value="Testing/Quality Assurance" /><span>Testing/Quality Assurance</span>
+						<br>
+						<input type="radio" name="category" value="IT/Systems Administration" /><span>IT/Systems Administration</span>
+						<br>
+						<input type="radio" name="category" value="Business/Management" /><span>Business/Management</span>
+						<br>
+						<input type="radio" name="category" value="Writer/Editor" /><span>Writer/Editor</span>
+						<br>
+						<input type="radio" name="category" value="Customer Support" /><span>Customer Support</span>
+						<br>
+						<input type="radio" name="category" value="Mobile (iPhone, Android, other)" /><span>Mobile (iPhone, Android, other)</span>
+						<br>
+						<input type="radio" name="category" value="Office Administration" /><span>Office Administration</span>
+					</div>
+				</div>
+				<div class="locationDiv">
+					<div class="subDiv1">
+						<label for="">Location</label>
+					</div>
+					<div class="subDiv2">
+						<input type="text" name="location"  />
+						<p>“Bangalore”, “Chennai”, “Pune”, etc or “Anywhere” (without quotes)</p>
+						<input type="checkbox" /><span>Relocation assistance available</span>
+					</div>
+				</div>
+				<div class="descDiv">
+					<p>Description</p>
+					<textarea rows="20" cols="100%" name="description">
+
+                </textarea>
+					<p>Don’t just describe the job, tell a compelling story for why someone should work for you
+
+					</p>
+				</div>
+				<div class="jobParkDiv">
+					<input type="checkbox"  /><span>Job perks are available</span>
+					<p>Describe job perks</p>
+					<textarea rows="20" cols="100%" name="jobPerks">
+
+                </textarea>
+					<p>Stock options, free lunch, free conference passes, etc</p>
+				</div>
+				<div class="payDiv">
+					<p>What does this job pay?</p>
+					<input type="radio" name="jobPay" value="Nothing" /><span>Nothing</span>
+					<input type="radio" name="jobPay" value="One-time" /><span>One-time</span>
+					<input type="radio" name="jobPay" value="Recurring" /><span>Recurring</span>
+				</div>
+				<div class="eqityDiv">
+					<input type="checkbox" /><span>Equity compensation is available</span>
+					<input type="range" name="equityCompensection" min="0" max="100" />
+					<p>Candidates can’t see what this job pays, but can search for jobs matching their expected pay
+						scale</p>
+				</div>
+				<div class="candidateDetailsDiv">
+					<p>What should a candidate submit when applying for this job?</p>
+					<textarea rows="10" cols="100%" name="jobNeed">
+
+                </textarea>
+					<p>Example: “Include your LinkedIn and GitHub profiles.” We now require candidates to apply through
+						the job board only. Do not include any contact information here. Candidates CANNOT attach
+						resumes or other documents, so do not ask for that</p>
+				</div>
+			</div>
+			<hr>
+			<div class="section">
+				<p class="aboutOrginationDeading">Next, tell us about your organization</p>
+				<div class="employNameDiv">
+					<div class="subDiv1">
+						<label for="">Headline B</label>
+					</div>
+					<div class="subDiv2">
+						<input type="text" name="organizationName" />
+						<p>The name of the organization where the position is. If your stealth startup doesn't have a
+							name yet, use your own. We do not accept posts from third parties such as recruitment
+							consultants. Such posts may be removed without notice</p>
+					</div>
+				</div>
+				<div class="logoDiv">
+					<div class="subDiv1">
+						<label for="">Logo</label>
+					</div>
+					<div class="subDiv2">
+						<input type="file" name="logo" />
+						<p>Optional — Your organization’s logo will appear at the top of your post.</p>
+					</div>
+				</div>
+				<div class="urlDiv">
+					<div class="subDiv1">
+						<label for="">URL</label>
+					</div>
+					<div class="subDiv2">
+						<input type="text" name="url" />
+						<p>Your organization’s website</p>
+					</div>
+				</div>
+				<div class="emailDiv">
+					<div class="subDiv1">
+						<label for="">Email</label>
+					</div>
+					<div class="subDiv2">
+						<input type="text" name="email" />
+						<p>This is where we’ll send your confirmation email and all job applications. We recommend using
+							a shared email address such as jobs@your-organization.com. Listings are classified by your
+							email domain, so use a work email address. Your email address will not be revealed to
+							applicants until you respond</p>
+					</div>
+				</div>
+				<div class="collaboratorsDiv">
+					<p class="collHeading">Only you, Abhisek Bhunia, will be able to respond to candidates. To allow
+						others to respond, add them as a collaborator.</p>
+					<div class="collaboratorSubDiv">
+						<div class="subDiv1">
+							<label for="">Email</label>
+						</div>
+						<div class="subDiv2">
+							<input type="text" name="collaborators" />
+							<p>This is where we’ll send your confirmation email and all job applications. We recommend
+								using a shared email address such as jobs@your-organization.com. Listings are classified
+								by your email domain, so use a work email address. Your email address will not be
+								revealed to applicants until you respond</p>
+						</div>
+					</div>
+				</div>
+				<div class="confirmationDiv">
+					<p class="confHeading">Is it okay for recruiters and other intermediaries to contact you about this
+						post?</p>
+					<input type="radio" name="intermediaries" value="no" /><span>No, it is NOT OK</span>
+					<br>
+					<input type="radio" name="intermediaries" value="yes" /><span>Yes, recruiters may contact me</span>
+					<p>We’ll display a notice to this effect on the post</p>
+				</div>
+				<div class="warningDiv">
+					<p class="warningHeading">Warning: Many recruiters will ignore your preference and contact you
+						anyway. Do not reveal your phone number in the post. If you receive an email, please report it
+						to support@hasgeek.com and we will block their account</p>
+					<button type="submit" class="submitButton">Review you post...</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>
