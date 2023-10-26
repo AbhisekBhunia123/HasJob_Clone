@@ -9,8 +9,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.job.Repositories.ApplicationRepo;
 import com.job.Repositories.JobsRepo;
 import com.job.Repositories.OrganizationRepo;
+import com.job.entities.Application;
 import com.job.entities.Job;
 import com.job.entities.Organization;
 
@@ -21,6 +23,8 @@ public class JobDao {
 	JobsRepo jobsRepo;
 	@Autowired
 	OrganizationRepo organizationRepo;
+	@Autowired
+	ApplicationRepo applicationRepo;
 	
 	public boolean saveJob(String headline,
 			String alternateHeadline,
@@ -71,5 +75,33 @@ public class JobDao {
 	
 	public Job getJobById(int id) {
 		return jobsRepo.findById(id).get();
+	}
+	
+	public List<Job> getJobsInLocation(String location){
+		return jobsRepo.findByLocation(location);
+	}
+	
+	public boolean saveApply(String applicantName,String applicantEmail,String applicantPhone,String applicantDetails,int jobId) {
+		boolean isSaved = false;
+		try {
+			Job job = jobsRepo.findById(jobId).get();
+			Application application = new Application();
+			application.setName(applicantName);
+			application.setEmail(applicantEmail);
+			application.setPhone(Long.parseLong(applicantPhone));
+			application.setNeed(applicantDetails);
+			application.setApplyAt(new Date());
+			application.setJob(job);
+			applicationRepo.save(application);
+			isSaved = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return isSaved;
+	}
+	
+	public List<Job> getAllJob(){
+		List<Job> jobs = jobsRepo.findAll();
+		return jobs;
 	}
 }

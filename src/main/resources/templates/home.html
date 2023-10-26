@@ -90,9 +90,17 @@
 							Dropdown button
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li><a class="dropdown-item" href="#">Something else here</a></li>
+							<li>
+								<form th:each="location : ${locations}" style="padding: 10px;">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" th:value="${location}"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault" th:text="${location}">
+
+										</label>
+									</div>
+								</form>
+							</li>
 						</ul>
 					</div>
 					<div class="dropdown">
@@ -101,9 +109,52 @@
 							Dropdown button
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li><a class="dropdown-item" href="#">Something else here</a></li>
+							<li>
+								<form style="padding:10px">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Full-time employment"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Full-time employment
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Short-term contract"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Short-term contract
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Internship"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Internship
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Freelance or consulting"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Freelance or consulting
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Volunteer contributor"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Volunteer contributor
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Partner for a venture"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Partner for a venture
+										</label>
+									</div>
+								</form>
+							</li>
 						</ul>
 					</div>
 					<div class="dropdown">
@@ -112,9 +163,95 @@
 							Dropdown button
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li><a class="dropdown-item" href="#">Something else here</a></li>
+							<li>
+								<form style="padding:10px">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Programming"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Programming
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Interaction Design"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Interaction Design
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Graphic Design"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Graphic Design
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Electronics"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Electronics
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Information Security"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Information Security
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Testing/Quality Assurance"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Testing/Quality Assurance
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="IT/Systems Administration"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											IT/Systems Administration
+										</label>
+									</div>
+
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Business/Management"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Business/Management
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Writer/Editor"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Writer/Editor
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Customer Support"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Customer Support
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Mobile (iPhone, Android, other)"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Mobile (iPhone, Android, other)
+										</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="Office Administration"
+											id="flexCheckDefault">
+										<label class="form-check-label" for="flexCheckDefault">
+											Office Administration
+										</label>
+									</div>
+								</form>
+							</li>
 						</ul>
 					</div>
 					<div class="dropdown">
@@ -151,17 +288,19 @@
 			<div class="row">
 				<div class="col-md-3" th:each="organization, iterStat: ${organizations}">
 					<!-- Add a card for each organization -->
-					<a th:href="@{'/'+${organization.email}+'/'+ ${organization.getJobs().get(0).id}}" th:if="${organization.getJobs().size() == 1}">
-						<div class="card mb-3" style="width: 18rem;" >
-						<div class="card-body">
-							<h5 class="card-title" th:text="${organization.getJobs().get(0).location}"></h5>
-							<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk
-								of the card's content.</p>
+					<a th:href="@{'/'+${organization.email}+'/'+ ${organization.getJobs().get(0).id}}"
+						th:if="${organization.getJobs().size() == 1}">
+						<div class="card mb-3" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title" th:text="${organization.getJobs().get(0).location}"></h5>
+								<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+								<p class="card-text">Some quick example text to build on the card title and make up the
+									bulk
+									of the card's content.</p>
+							</div>
 						</div>
-					</div>
 					</a>
-					
+
 
 					<div th:if="${organization.getJobs().size() > 1}">
 						<div style="width: 18rem;position: absolute">

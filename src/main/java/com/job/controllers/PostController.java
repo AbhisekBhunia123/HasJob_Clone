@@ -1,5 +1,7 @@
 package com.job.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.job.entities.Job;
+import com.job.entities.Organization;
 import com.job.services.JobPostServices;
 
 @Controller
@@ -46,8 +49,22 @@ public class PostController {
 	@GetMapping("/{orgEmail}/{jobId}")
 	public String shodIndivisualJob(@PathVariable("orgEmail") String orgEmail,@PathVariable("jobId") int jobId,Model model) {
 		Job job = jobPostServices.getJobById(jobId);
+		List<Job> jobs = jobPostServices.getJobsInLocation(job.getLocation());
 		model.addAttribute("job",job);
+		model.addAttribute("jobs",jobs);
 		return "jobpage";
 	}
+	
+	@PostMapping("/apply")
+	public String applyForJob(@RequestParam("empName") String applicantName,
+			@RequestParam("empEmail") String applicantEmail,
+			@RequestParam("empPhone") String applicantPhone,
+			@RequestParam("applicantDetail") String applicantDetails,
+			@RequestParam("jobId") int jobId
+			) {
+		jobPostServices.applyForJob(applicantName,applicantEmail,applicantPhone,applicantDetails,jobId);
+		return "successfullapply";
+	}
+	
 
 }

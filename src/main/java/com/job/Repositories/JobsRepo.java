@@ -10,4 +10,6 @@ import com.job.entities.Job;
 public interface JobsRepo extends JpaRepository<Job, Integer> {
 
 	Job findFirstByOrganizationIdOrderById(int organizationId);
+	
+	public List<Job> findByLocation(String location);
 }

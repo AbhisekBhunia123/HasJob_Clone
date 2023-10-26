@@ -199,53 +199,89 @@
 				</div>
 			</div>
 			<div>
-				<p></p>
-				<p></p>
-				<div class="appliNameDiv">
-					<div>
-						<p>Name</p>
+				<form th:action="@{/apply}" method="post">
+					<input type="hidden" name="jobId" th:value="${job.id}"
+					<p></p>
+					<p></p>
+					<div class="appliNameDiv">
+						<div>
+							<p>Name</p>
+						</div>
+						<div>
+							<input type="text" name="empName" />
+							<p>You may edit your name from your profile</p>
+						</div>
+					</div>
+					<div class="appliEmailDiv">
+						<div>
+							<p>Name</p>
+						</div>
+						<div>
+							<input type="radio" name="empEmail" value="abhisekbhunia5@gmail.com" /><span>abhisekbhunia5@gmail.com</span>
+							<p>Add new email addresses from your profile</p>
+						</div>
+					</div>
+					<div class="appliPhoneDiv">
+						<div>
+							<p>Phone</p>
+						</div>
+						<div>
+							<input type="text" name="empPhone" />
+							<p>A phone number the employer can reach you at</p>
+						</div>
 					</div>
 					<div>
-						<input type="text" name="empName" />
-						<p>You may edit your name from your profile</p>
-					</div>
-				</div>
-				<div class="appliEmailDiv">
-					<div>
-						<p>Name</p>
-					</div>
-					<div>
-						<input type="radio" name="empEmail" /><span>abhisekbhunia5@gmail.com</span>
-						<p>Add new email addresses from your profile</p>
-					</div>
-				</div>
-				<div class="appliPhoneDiv">
-					<div>
-						<p>Name</p>
-					</div>
-					<div>
-						<input type="text" name="empPhone" />
-						<p>A phone number the employer can reach you at</p>
-					</div>
-				</div>
-				<div>
-					<p>job application</p>
-					<textarea name="" rows="50" cols="100%">
-						
+						<p>job application</p>
+						<textarea rows="50" cols="100%" name="applicantDetail">
+
 					</textarea>
-					<p>Please provide all details the employer has requested. To add a resume, post it on LinkedIn or host the file on Dropbox and insert the link here</p>
+						<p>Please provide all details the employer has requested. To add a resume, post it on LinkedIn
+							or
+							host the file on Dropbox and insert the link here</p>
+					</div>
+					<div>
+						<input type="checkbox" name="extraSign" value="OK" /><span>Optional: sign me up for a better Hasjob experience</span>
+						<p>Hasjob’s maintainers may contact you about new features and can see this application for
+							reference</p>
+					</div>
+					<div>
+						<button type="submit">Apply</button>
+						<p>Note: Be selective about the jobs you apply for and mindful of the employer’s time. If too
+							many
+							employers report you for wasting their time with an irrelevant application, you will be
+							barred
+							from applying to more jobs. Employers can see how many other jobs you are applying to
+							simultaneously and your status with them, but not which jobs you are applying to.</p>
+					</div>
+					<div>
+						<p>It is NOT OK for recruiters, HR consultants, and other intermediaries to contact this
+							employer
+						</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid jobSection">
+		<div class="container jobDiv">
+			<div class="row">
+				<div class="col-md-3" th:each="jobInList, iterStat: ${jobs}">
+					<!-- Add a card for each organization -->
+					<a th:href="@{'/'+${jobInList.getOrganization.email}+'/'+ ${jobInList.id}}">
+						<div class="card mb-3" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title" th:text="${jobInList.location}"></h5>
+								<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+								<p class="card-text">Some quick example text to build on the card title and make up the
+									bulk
+									of the card's content.</p>
+							</div>
+						</div>
+					</a>
+					<!-- Check if the current iteration is a multiple of 4 to start a new row -->
+					<div th:if="${iterStat.count % 4 == 0}" class="w-100"></div>
 				</div>
-				<div>
-					<input type="checkbox" /><span>Optional: sign me up for a better Hasjob experience</span>
-					<p>Hasjob’s maintainers may contact you about new features and can see this application for reference</p>
-				</div>
-				<div>
-					<button></button>
-					<p>Note: Be selective about the jobs you apply for and mindful of the employer’s time. If too many employers report you for wasting their time with an irrelevant application, you will be barred from applying to more jobs. Employers can see how many other jobs you are applying to simultaneously and your status with them, but not which jobs you are applying to.</p>
-				</div>
-				<div>
-					<p>It is NOT OK for recruiters, HR consultants, and other intermediaries to contact this employer</p>
-				</div>
+
 			</div>
 		</div>
 	</div>

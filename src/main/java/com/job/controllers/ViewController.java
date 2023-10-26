@@ -24,7 +24,9 @@ public class ViewController {
 	@RequestMapping("/")
 	public String home(Model model) {
 		List<Organization> organizations = jobPostServices.getallOrganization();
+		Set<String> locations = jobPostServices.getAllLocations();
 		model.addAttribute("organizations",organizations);
+		model.addAttribute("locations",locations);
 		return "home";
 	}
 	

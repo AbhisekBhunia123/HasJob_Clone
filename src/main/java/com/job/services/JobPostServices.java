@@ -89,5 +89,27 @@ public class JobPostServices {
 	public Job getJobById(int id) {
 		return jobDao.getJobById(id);
 	}
+	
+	public List<Job> getJobsInLocation(String location){
+		return jobDao.getJobsInLocation(location);
+	}
+	
+	public boolean applyForJob(String applicantName,String applicantEmail,String applicantPhone,String applicantDetails,int jobId) {
+		boolean isApplied = false;
+		boolean isSave = jobDao.saveApply(applicantName,applicantEmail,applicantPhone,applicantDetails,jobId);
+		if(isSave) {
+			isApplied = true;
+		}
+		return isApplied;
+	}
+	
+	public Set<String> getAllLocations(){
+		Set<String> locations = new HashSet<>();
+		List<Job>  jobs = jobDao.getAllJob();
+		for(Job job : jobs) {
+			locations.add(job.getLocation());
+		}
+		return locations;
+	}
 
 }
