@@ -45,10 +45,15 @@ public class OrganizationDao {
 	}
 	
 	public String getImageAsBase64(int id) {
-	    byte[] imageData = organizationRepo.findById(id).get().getLogo();
-	    if (imageData != null) {
-	        return Base64.getEncoder().encodeToString(imageData);
-	    }
+		try {
+			byte[] imageData = organizationRepo.findById(id).get().getLogo();
+		    if (imageData != null) {
+		        return Base64.getEncoder().encodeToString(imageData);
+		    }
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	    
 	    return null;
 	}
 	

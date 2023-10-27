@@ -39,7 +39,9 @@ public class JobDao {
 			String inermediaries,
 			Date openedAt,
 			Date closedAt,
-			Organization organization
+			Organization organization,
+			String payType,
+			String payRange
 			) {
 		boolean isSaved = false;
 		try {
@@ -59,6 +61,8 @@ public class JobDao {
 			job.setIntermediaries(inermediaries);
 			job.setOpenedAt(openedAt);
 			job.setClosedAt(closedAt);
+			job.setPayType(payType);
+			job.setPayRange(Long.parseLong(payRange));
 			job.setOrganization(organization);
 			jobsRepo.save(job);
 			isSaved = true;
@@ -102,6 +106,15 @@ public class JobDao {
 	
 	public List<Job> getAllJob(){
 		List<Job> jobs = jobsRepo.findAll();
+		return jobs;
+	}
+	
+	public List<Job> filterJob(String[] types,String[] categorys,String[] locations,String payType,String payRange,String searchText){
+		if(payRange.equals("0")) {
+			List<Job> jobs = jobsRepo.filterJobWithOutPay(types, categorys, locations,payType,searchText);
+			return jobs;
+		}
+		List<Job> jobs = jobsRepo.filterJob(types, categorys, locations,payType,searchText,Long.parseLong(payRange));
 		return jobs;
 	}
 }

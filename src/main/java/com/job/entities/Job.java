@@ -32,6 +32,10 @@ public class Job {
 	private String jobParks;
 	@Column(name = "job_pay")
 	private String jobPay;
+	@Column(name = "pay_type")
+	private String payType;
+	@Column(name = "pay_range")
+	private long payRange;
 	@Column(name = "equity_compensection")
 	private float equityCompensection;
 	@Column(name = "job_need")
@@ -54,10 +58,11 @@ public class Job {
 	}
 
 
+
 	public Job(int id, String headline, String alternateHeading, String type, String category, String location,
-			String description, String jobParks, String jobPay, float equityCompensection, String jobNeed,
-			String intermediaries, Date openedAt, Date closedAt, List<Application> applications,
-			Organization organization) {
+			String description, String jobParks, String jobPay, String payType, long payRange,
+			float equityCompensection, String jobNeed, String intermediaries, Date openedAt, Date closedAt,
+			List<Application> applications, Organization organization) {
 		super();
 		this.id = id;
 		this.headline = headline;
@@ -68,6 +73,8 @@ public class Job {
 		this.description = description;
 		this.jobParks = jobParks;
 		this.jobPay = jobPay;
+		this.payType = payType;
+		this.payRange = payRange;
 		this.equityCompensection = equityCompensection;
 		this.jobNeed = jobNeed;
 		this.intermediaries = intermediaries;
@@ -76,6 +83,9 @@ public class Job {
 		this.applications = applications;
 		this.organization = organization;
 	}
+
+
+
 
 
 	public int getId() {
@@ -213,6 +223,32 @@ public class Job {
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
+
+
+
+	public String getPayType() {
+		return payType;
+	}
+
+
+
+	public void setPayType(String payType) {
+		this.payType = payType;
+	}
+
+
+
+	public long getPayRange() {
+		return payRange;
+	}
+
+
+
+	public void setPayRange(long payRange) {
+		this.payRange = payRange;
+	}
+	
+	
 	
 	
 	

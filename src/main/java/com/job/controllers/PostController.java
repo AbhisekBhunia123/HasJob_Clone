@@ -1,6 +1,7 @@
 package com.job.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,22 +37,37 @@ public class PostController {
 			@RequestParam("organizationName") String organizationName,
 			@RequestParam("url") String url,
 			@RequestParam("email") String email,
+			@RequestParam("payType") String payType,
+			@RequestParam("payRange") String payRange,
 			@RequestParam("collaborators") String collaborators,
 			@RequestParam("logo") MultipartFile logo) {
 		
-		boolean isPublished = jobPostServices.publishJob(headline, headlineB, type, category, location, description, jobPerks, jobPay, equityCompensection, jobNeed, intermediaries, organizationName, url, email, collaborators, logo);
+		boolean isPublished = jobPostServices.publishJob(headline, headlineB, type, category, location, description, jobPerks, jobPay, equityCompensection, jobNeed, intermediaries, organizationName, url, email, collaborators, logo,payType,payRange);
 		if(isPublished) {
 			return "redirect:/";
 		}
 		return "redirect:/new";
 	}
 	
+	@PostMapping("/updatejob")
+	public String updateJob(@RequestParam("jobId") int jobId,Model model) {
+		Job  job = jobPostServices.getJobById(jobId);
+		model.addAttribute("job",job);
+		return "postjob";
+	}
+	
 	@GetMapping("/{orgEmail}/{jobId}")
 	public String shodIndivisualJob(@PathVariable("orgEmail") String orgEmail,@PathVariable("jobId") int jobId,Model model) {
 		Job job = jobPostServices.getJobById(jobId);
 		List<Job> jobs = jobPostServices.getJobsInLocation(job.getLocation());
+		Set<String> locations = jobPostServices.getAllLocations();
+		String base64Image = jobPostServices.getImageAsBase64(jobId);
+        if (base64Image != null) {
+            model.addAttribute("base64Image",base64Image);
+        }
 		model.addAttribute("job",job);
 		model.addAttribute("jobs",jobs);
+		model.addAttribute("locations",locations);
 		return "jobpage";
 	}
 	

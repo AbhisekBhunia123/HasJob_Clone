@@ -34,7 +34,7 @@ public class JobPostServices {
 	public boolean publishJob(String headline, String headlineB, String type, String category, String location,
 			String description, String jobPerks, String jobPay, float equityCompensection, String jobNeed,
 			String intermediaries, String organizationName, String url, String email, String collaborators,
-			MultipartFile logo) {
+			MultipartFile logo,String payType,String payRange) {
 		boolean isPublished = false;
 		Date openedAt = new Date();
 		Calendar calendar = Calendar.getInstance();
@@ -47,7 +47,7 @@ public class JobPostServices {
 			if (isCreated) {
 				Organization org = organizationDao.findByEmail(email);
 				boolean isSaved = jobDao.saveJob(headline, headlineB, type, category, location, description, jobPerks,
-						jobPay, equityCompensection, jobNeed, intermediaries, openedAt, closedAt, org);
+						jobPay, equityCompensection, jobNeed, intermediaries, openedAt, closedAt, org,payType,payRange);
 				if (isSaved) {
 					isPublished = true;
 				}
@@ -57,7 +57,7 @@ public class JobPostServices {
 		} else {
 			Organization org = organizationDao.findByEmail(email);
 			boolean isSaved = jobDao.saveJob(headline, headlineB, type, category, location, description, jobPerks,
-					jobPay, equityCompensection, jobNeed, intermediaries, openedAt, closedAt, org);
+					jobPay, equityCompensection, jobNeed, intermediaries, openedAt, closedAt, org,payType,payRange);
 			if (isSaved) {
 				isPublished = true;
 			}
@@ -110,6 +110,11 @@ public class JobPostServices {
 			locations.add(job.getLocation());
 		}
 		return locations;
+	}
+	
+	public List<Job> filterJobs(String[] type,String[] categories,String[] locations,String payType,String payRange,String searchText){
+		List<Job> jobs = jobDao.filterJob(type,categories,locations,payType,payRange,searchText);
+		return jobs;
 	}
 
 }

@@ -6,94 +6,442 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<style>
-		*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-.mainDiv{
-    width:50%;
-    margin-left: 25%;
-    margin-right: 25%;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin-bottom: 100px;
-}
-.section{
-    width:100%;
-    height: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    
-}
+		.navbarDiv {
+			width: 100%;
+			background-color: #eee;
+			width: 50px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			position: fixed;
+		}
 
-.titleDiv{
-    width: 100%;
+		.navHeadingDiv {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 80% 20%;
+			padding: 10px;
+		}
 
-}
+		.navFilterDiv {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 20% 20% 20% 20% 20%;
+		}
 
-.titleHeading{
-    font-size: 35px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    
-}
+		.navFilterDiv {
+			padding: 10px;
+		}
 
-.titleContent1,.titleContent2{
-    font-size: 18px;
-    margin-bottom: 10px;
-}
+		.dropdownBtn {
+			width: 200px;
+			border: 1px solid black;
+		}
 
-.aboutHeading,.aboutOrginationDeading{
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 20px;
+		.filterSection {
+			padding: 20px;
+		}
 
-}
+		.filterSectionDiv {
+			padding: 30px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
 
-.headingDiv,.typeDiv,.categoryDiv,.locationDiv,.employNameDiv,.logoDiv,.urlDiv,.emailDiv,.collaboratorSubDiv{
-    display: grid;
-    grid-template-columns: 20% 80%;
-    margin-bottom: 20px;
-}
+		.jobSection {
+			padding: 20px;
+		}
 
-.headingDiv .subDiv1{
-    display: flex;
-    align-items: center;
-    
-}
+		.card {
+			margin-bottom: 20px;
+		}
 
-.headingDiv input,.locationDiv input:first-child,.employNameDiv input,.urlDiv input,.emailDiv input,.collaboratorSubDiv input{
-    width:100%;
-    height:40px;
-}
+		.jobsAnchor {
+			text-decoration: none;
+			color: black;
+		}
 
-.locationDiv input[type = checkbox]{
-    margin-top: 20px;
-    margin-right: 5px;
-}
-.jobParkDiv,.payDiv,.eqityDiv,.candidateDetailsDiv,.collHeading,.confHeading,.confirmationDiv,.warningHeading,.warningDiv,.descDiv{
-    width:100%;
-    margin-bottom: 20px;
-}
-
-.submitButton{
-    width:200px;
-    height:40px;
-    padding: 10px;
-}
+		.jobsAnchor:hover {
+			color: black;
+		}
 
 
+		<!--end nav style-->
+		.section {
+			width: 100%;
+			height: auto;
+			padding-left: 20px;
+			padding-right: 20px;
+
+		}
+
+		.titleDiv {
+			width: 100%;
+
+		}
+
+		.titleHeading {
+			font-size: 35px;
+			font-weight: bold;
+			font-family: Arial, Helvetica, sans-serif;
+			margin-bottom: 10px;
+			color: #e04f36
+		}
+
+		.titleContent1,
+		.titleContent2 {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+
+		.aboutHeading,
+		.aboutOrginationDeading {
+			font-size: 20px;
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
+			margin-top: 10px;
+			margin-bottom: 20px;
+
+		}
+
+		.headingDiv,
+		.typeDiv,
+		.categoryDiv,
+		.locationDiv,
+		.employNameDiv,
+		.logoDiv,
+		.urlDiv,
+		.emailDiv,
+		.collaboratorSubDiv {
+			display: grid;
+			grid-template-columns: 20% 80%;
+			margin-bottom: 20px;
+		}
+
+		.headingDiv .subDiv1 {
+			display: flex;
+			align-items: center;
+
+		}
+
+		.headingDiv input,
+		.locationDiv input:first-child,
+		.employNameDiv input,
+		.urlDiv input,
+		.emailDiv input,
+		.collaboratorSubDiv input {
+			width: 100%;
+			height: 40px;
+		}
+
+		.locationDiv input[type=checkbox] {
+			margin-top: 20px;
+			margin-right: 5px;
+		}
+
+		.jobParkDiv,
+		.payDiv,
+		.eqityDiv,
+		.candidateDetailsDiv,
+		.collHeading,
+		.confHeading,
+		.confirmationDiv,
+		.warningHeading,
+		.warningDiv,
+		.descDiv {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		.submitButton {
+			width: 200px;
+			height: 40px;
+			padding: 10px;
+		}
 	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
-<body>
-	<div class="mainDiv">
+<body style="background-color:#edf0b6">
+	<div>
+		<div>
+			<div class="container-fluid navbarDiv">
+				<div class="container navHeadingDiv">
+					<div class="navHeading">
+						<img src="" /><span>The Hasgeek Job Board</span>
+					</div>
+					<div class="navPost">
+						<button class="btn btn-small"
+							style="border: 1px solid gray;height:30px;padding:5px;background-color:green;color: white;">Login</button>
+						<span><i class="fa fa-th" aria-hidden="true" style="font-size: 20px;color: black;"></i></span>
+					</div>
+				</div>
+				<form th:action="@{/multifilter}" method="post" id="filterForm">
+					<div class="container navFilterDiv">
+						<div class="dropdown">
+							<button class="btn dropdown-toggle dropdownBtn bg-light" style="border: 1px solid gray;"
+								type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+								Location
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li>
+									<div th:each="location : ${locations}" style="padding: 10px;">
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:value="${location}" name="location" id="flexCheckDefault"
+												th:checked="${filterLocation != null && filterLocation.contains(location)}">
+											<label class="form-check-label" for="flexCheckDefault"
+												th:text="${location}">
+
+											</label>
+
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="dropdown">
+							<button class="btn dropdown-toggle dropdownBtn bg-light" style="border: 1px solid gray;"
+								type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+								Job Type
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li>
+									<div style="padding:10px">
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterType != null && filterType.contains('Full-time employment')}"
+												value="Full-time employment" name="t" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Full-time employment
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterType != null && filterType.contains('Short-term contract')}"
+												value="Short-term contract" name="t" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Short-term contract
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterType != null && filterType.contains('Internship')}"
+												value="Internship" name="t" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Internship
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox" name="t"
+												th:checked="${filterType != null && filterType.contains('Freelance or consulting')}"
+												value="Freelance or consulting" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Freelance or consulting
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox" name="t"
+												th:checked="${filterType != null && filterType.contains('Volunteer contributor')}"
+												value="Volunteer contributor" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Volunteer contributor
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox" name="t"
+												th:checked="${filterType != null && filterType.contains('Partner for a venture')}"
+												value="Partner for a venture" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Partner for a venture
+											</label>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="dropdown">
+							<button class="btn  dropdown-toggle dropdownBtn bg-light" style="border: 1px solid gray;"
+								type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+								Job Category
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li>
+									<div style="padding:10px">
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterCategory != null && filterCategory.contains('Programming')}"
+												value="Programming" name="c" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Programming
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterCategory != null && filterCategory.contains('Interaction Design')}"
+												value="Interaction Design" name="c" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Interaction Design
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterCategory != null && filterCategory.contains('Graphic Design')}"
+												value="Graphic Design" name="c" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Graphic Design
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterCategory != null && filterCategory.contains('Electronics')}"
+												value="Electronics" name="c" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Electronics
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterCategory != null && filterCategory.contains('Information Security')}"
+												value="Information Security" name="c" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Information Security
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox" name="c"
+												th:checked="${filterCategory != null && filterCategory.contains('Testing/Quality Assurance')}"
+												value="Testing/Quality Assurance" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Testing/Quality Assurance
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox" name="c"
+												th:checked="${filterCategory != null && filterCategory.contains('IT/Systems Administration')}"
+												value="IT/Systems Administration" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												IT/Systems Administration
+											</label>
+										</div>
+
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterCategory != null && filterCategory.contains('Business/Management')}"
+												value="Business/Management" name="c" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Business/Management
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterCategory != null && filterCategory.contains('Writer/Editor')}"
+												value="Writer/Editor" name="c" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Writer/Editor
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox"
+												th:checked="${filterCategory != null && filterCategory.contains('Customer Support')}"
+												value="Customer Support" name="c" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Customer Support
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox" name="c"
+												th:checked="${filterCategory != null && filterCategory.contains('Mobile (iPhone, Android, other)')}"
+												value="Mobile (iPhone, Android, other)" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Mobile (iPhone, Android, other)
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterInput" type="checkbox" name="c"
+												th:checked="${filterCategory != null && filterCategory.contains('Office Administration')}"
+												value="Office Administration" id="flexCheckDefault">
+											<label class="form-check-label" for="flexCheckDefault">
+												Office Administration
+											</label>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="dropdown">
+							<button class="btn dropdown-toggle dropdownBtn bg-light" style="border: 1px solid gray;"
+								type="button" id="filterRangeButton" data-bs-toggle="dropdown" aria-expanded="false"
+								th:text="${(filterPayRange == null || filterPayRange.equals('0')) ? 'Pay' : filterPayRange + ' per year'}">
+
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li>
+									<div style="padding: 10px; width:300px">
+										<div class="form-check">
+											<input class="form-check-input filterPay" type="radio" name="payType"
+												value="Any"
+												th:checked="${filterPayType != null && filterPayType.equals('Any')}"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Any
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterPay" type="radio" name="payType"
+												value="INR"
+												th:checked="${filterPayType != null && filterPayType.equals('INR')}"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												INR
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterPay" type="radio" name="payType"
+												value="USD"
+												th:checked="${filterPayType != null && filterPayType.equals('USD')}"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												USD
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input filterPay" type="radio" name="payType"
+												value="EUR"
+												th:checked="${filterPayType != null && filterPayType.equals('EUR')}"
+												id="flexRadioDefault1">
+											<label class="form-check-label" for="flexRadioDefault1">
+												EUR
+											</label>
+										</div>
+										<input type="range" class="form-range" id="filterRange"
+											th:value="${filterPayRange == null ? 0 : filterPayRange}" min="0"
+											max="1000000" name="payRange">
+									</div>
+
+								</li>
+
+							</ul>
+						</div>
+						<div class="searchBtn">
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+								name="searchText" th:value="${filterSearchText != null ? filterSearchText : ''}"
+								id="filterSearch">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="container card mainDiv"
+		style="width:50%;position: absolute;top: 140px; margin-left: 25%; margin-bottom: 100px; z-index: -1;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 		<form method="post" action="/postjob" enctype="multipart/form-data">
 			<div class="section">
 				<div class="titleDiv">
@@ -107,13 +455,13 @@
 				<hr>
 			</div>
 			<div class="section">
-				<p class="aboutHeading">First, tell us about the position</p>
+				<p class="aboutHeading" style="color: #62679c;">First, tell us about the position</p>
 				<div class="headingDiv">
 					<div class="subDiv1">
 						<label for="">Headline</label>
 					</div>
 					<div class="subDiv2">
-						<input type="text" name="headline" />
+						<input type="text" name="headline" class="form-control" />
 						<p>A single-line summary. This goes to the front page and across the network. A/B test it?</p>
 					</div>
 				</div>
@@ -122,7 +470,7 @@
 						<label for="">Headline B</label>
 					</div>
 					<div class="subDiv2">
-						<input type="text" name="headlineB" />
+						<input type="text" name="headlineB" class="form-control" />
 						<p>An alternate headline that will be shown to 50%% of users. You’ll get a count of views per
 							headline</p>
 					</div>
@@ -132,17 +480,26 @@
 						<p>Type</p>
 					</div>
 					<div class="subDiv2">
-						<input type="radio" name="type" value="Full-time employment" /><span>Full-time employment</span>
+						<input type="radio" name="type" value="Full-time employment" class="form-check-input"
+							style="margin-right: 5px;" /><span>Full-time employment</span>
 						<br>
-						<input type="radio" name="type" value="Short-term contract" /><span>Short-term contract</span>
+						<input type="radio" name="type" value="Short-term contract" class="form-check-input"
+							style="margin-right: 5px;" /><span>Short-term contract</span>
 						<br>
-						<input type="radio" name="type" value="Internship" /><span>Internship</span>
+						<input type="radio" name="type" value="Internship" class="form-check-input"
+							style="margin-right: 5px;" /><span>Internship</span>
 						<br>
-						<input type="radio" name="type" value="Freelance or consulting" /><span>Freelance or consulting</span>
+						<input type="radio" name="type" value="Freelance or consulting" class="form-check-input"
+							style="margin-right: 5px;" /><span>Freelance or
+							consulting</span>
 						<br>
-						<input type="radio" name="type" value="Volunteer contributor" /><span>Volunteer contributor</span>
+						<input type="radio" name="type" value="Volunteer contributor" class="form-check-input"
+							style="margin-right: 5px;" /><span>Volunteer
+							contributor</span>
 						<br>
-						<input type="radio" name="type" value="Partner for a venture" /><span>Partner for a venture </span>
+						<input type="radio" name="type" value="Partner for a venture" class="form-check-input"
+							style="margin-right: 5px;" /><span>Partner for a venture
+						</span>
 					</div>
 				</div>
 				<div class="categoryDiv">
@@ -150,29 +507,46 @@
 						<p>Category</p>
 					</div>
 					<div class="subDiv2">
-						<input type="radio" name="category" value="Programming" /><span>Programming</span>
+						<input type="radio" name="category" value="Programming" class="form-check-input"
+							style="margin-right: 5px;" /><span>Programming</span>
 						<br>
-						<input type="radio" name="category" value="Interaction Design" /><span>Interaction Design</span>
+						<input type="radio" name="category" value="Interaction Design" class="form-check-input"
+							style="margin-right: 5px;" /><span>Interaction Design</span>
 						<br>
-						<input type="radio" name="category" value="Graphic Design" /><span>Graphic Design</span>
+						<input type="radio" name="category" value="Graphic Design" class="form-check-input"
+							style="margin-right: 5px;" /><span>Graphic Design</span>
 						<br>
-						<input type="radio" name="category" value="Electronics" /><span>Electronics</span>
+						<input type="radio" name="category" value="Electronics" class="form-check-input"
+							style="margin-right: 5px;" /><span>Electronics</span>
 						<br>
-						<input type="radio" name="category" value="Information Security" /><span>Information Security</span>
+						<input type="radio" name="category" value="Information Security" class="form-check-input"
+							style="margin-right: 5px;" /><span>Information
+							Security</span>
 						<br>
-						<input type="radio" name="category" value="Testing/Quality Assurance" /><span>Testing/Quality Assurance</span>
+						<input type="radio" name="category" value="Testing/Quality Assurance" class="form-check-input"
+							style="margin-right: 5px;" /><span>Testing/Quality
+							Assurance</span>
 						<br>
-						<input type="radio" name="category" value="IT/Systems Administration" /><span>IT/Systems Administration</span>
+						<input type="radio" name="category" value="IT/Systems Administration" class="form-check-input"
+							style="margin-right: 5px;" /><span>IT/Systems
+							Administration</span>
 						<br>
-						<input type="radio" name="category" value="Business/Management" /><span>Business/Management</span>
+						<input type="radio" name="category" value="Business/Management" class="form-check-input"
+							style="margin-right: 5px;" /><span>Business/Management</span>
 						<br>
-						<input type="radio" name="category" value="Writer/Editor" /><span>Writer/Editor</span>
+						<input type="radio" name="category" value="Writer/Editor" class="form-check-input"
+							style="margin-right: 5px;" /><span>Writer/Editor</span>
 						<br>
-						<input type="radio" name="category" value="Customer Support" /><span>Customer Support</span>
+						<input type="radio" name="category" value="Customer Support" class="form-check-input"
+							style="margin-right: 5px;" /><span>Customer Support</span>
 						<br>
-						<input type="radio" name="category" value="Mobile (iPhone, Android, other)" /><span>Mobile (iPhone, Android, other)</span>
+						<input type="radio" name="category" value="Mobile (iPhone, Android, other)"
+							class="form-check-input" style="margin-right: 5px;" /><span>Mobile
+							(iPhone, Android, other)</span>
 						<br>
-						<input type="radio" name="category" value="Office Administration" /><span>Office Administration</span>
+						<input type="radio" name="category" value="Office Administration" class="form-check-input"
+							style="margin-right: 5px;" /><span>Office
+							Administration</span>
 					</div>
 				</div>
 				<div class="locationDiv">
@@ -180,14 +554,15 @@
 						<label for="">Location</label>
 					</div>
 					<div class="subDiv2">
-						<input type="text" name="location"  />
+						<input type="text" name="location" class="form-control" />
 						<p>“Bangalore”, “Chennai”, “Pune”, etc or “Anywhere” (without quotes)</p>
-						<input type="checkbox" /><span>Relocation assistance available</span>
+
 					</div>
 				</div>
 				<div class="descDiv">
+					<input type="checkbox" class="form-check-input" /><span>Relocation assistance available</span>
 					<p>Description</p>
-					<textarea rows="20" cols="100%" name="description">
+					<textarea rows="10" name="description" class="form-control">
 
                 </textarea>
 					<p>Don’t just describe the job, tell a compelling story for why someone should work for you
@@ -195,28 +570,48 @@
 					</p>
 				</div>
 				<div class="jobParkDiv">
-					<input type="checkbox"  /><span>Job perks are available</span>
+					<input type="checkbox" class="form-check-input" /><span>Job perks are available</span>
 					<p>Describe job perks</p>
-					<textarea rows="20" cols="100%" name="jobPerks">
+					<textarea rows="10" name="jobPerks" class="form-control">
 
                 </textarea>
 					<p>Stock options, free lunch, free conference passes, etc</p>
 				</div>
 				<div class="payDiv">
 					<p>What does this job pay?</p>
-					<input type="radio" name="jobPay" value="Nothing" /><span>Nothing</span>
-					<input type="radio" name="jobPay" value="One-time" /><span>One-time</span>
-					<input type="radio" name="jobPay" value="Recurring" /><span>Recurring</span>
+					<input type="radio" name="jobPay" value="Nothing" class="form-check-input"
+						style="margin-right: 5px;" /><span>Nothing</span>
+					<input type="radio" name="jobPay" value="One-time" class="form-check-input"
+						style="margin-right: 5px;" /><span>One-time</span>
+					<input type="radio" name="jobPay" value="Recurring" class="form-check-input"
+						style="margin-right: 5px;" /><span>Recurring</span>
+					<br>
+					<br>
+					<p>Currency</p>
+					<input type="radio" name="payType" value="INR" class="form-check-input"
+						style="margin-right: 5px;" /><span>INR</span>
+					<input type="radio" name="payType" value="USD" class="form-check-input"
+						style="margin-right: 5px;" /><span>USD</span>
+					<input type="radio" name="payType" value="EUR" class="form-check-input"
+						style="margin-right: 5px;" /><span>EUR</span>
+
+					<br>
+					<p id="paymentRange1"></p>
+					<input type="range" class="form-range" name="payRange" value="0" min="0" max="1000000"
+						id="paymentRangeBtn1" />
 				</div>
 				<div class="eqityDiv">
-					<input type="checkbox" /><span>Equity compensation is available</span>
-					<input type="range" name="equityCompensection" min="0" max="100" />
+					<input type="checkbox" class="form-check-input" /><span>Equity compensation is available</span>
+					<br>
+					<p id="paymentRange2"></p>
+					<input type="range" class="form-range" name="equityCompensection" value="0" min="0" max="100"
+						id="paymentRangeBtn2" />
 					<p>Candidates can’t see what this job pays, but can search for jobs matching their expected pay
 						scale</p>
 				</div>
 				<div class="candidateDetailsDiv">
 					<p>What should a candidate submit when applying for this job?</p>
-					<textarea rows="10" cols="100%" name="jobNeed">
+					<textarea rows="10" name="jobNeed" class="form-control">
 
                 </textarea>
 					<p>Example: “Include your LinkedIn and GitHub profiles.” We now require candidates to apply through
@@ -226,13 +621,13 @@
 			</div>
 			<hr>
 			<div class="section">
-				<p class="aboutOrginationDeading">Next, tell us about your organization</p>
+				<p class="aboutOrginationDeading" style="color: #62679c;">Next, tell us about your organization</p>
 				<div class="employNameDiv">
 					<div class="subDiv1">
 						<label for="">Headline B</label>
 					</div>
 					<div class="subDiv2">
-						<input type="text" name="organizationName" />
+						<input type="text" name="organizationName" class="form-control" />
 						<p>The name of the organization where the position is. If your stealth startup doesn't have a
 							name yet, use your own. We do not accept posts from third parties such as recruitment
 							consultants. Such posts may be removed without notice</p>
@@ -243,7 +638,7 @@
 						<label for="">Logo</label>
 					</div>
 					<div class="subDiv2">
-						<input type="file" name="logo" />
+						<input type="file" name="logo" class="form-control" />
 						<p>Optional — Your organization’s logo will appear at the top of your post.</p>
 					</div>
 				</div>
@@ -252,7 +647,7 @@
 						<label for="">URL</label>
 					</div>
 					<div class="subDiv2">
-						<input type="text" name="url" />
+						<input type="text" name="url" class="form-control" />
 						<p>Your organization’s website</p>
 					</div>
 				</div>
@@ -261,7 +656,7 @@
 						<label for="">Email</label>
 					</div>
 					<div class="subDiv2">
-						<input type="text" name="email" />
+						<input type="text" name="email" class="form-control" />
 						<p>This is where we’ll send your confirmation email and all job applications. We recommend using
 							a shared email address such as jobs@your-organization.com. Listings are classified by your
 							email domain, so use a work email address. Your email address will not be revealed to
@@ -276,7 +671,7 @@
 							<label for="">Email</label>
 						</div>
 						<div class="subDiv2">
-							<input type="text" name="collaborators" />
+							<input type="text" name="collaborators" class="form-control" />
 							<p>This is where we’ll send your confirmation email and all job applications. We recommend
 								using a shared email address such as jobs@your-organization.com. Listings are classified
 								by your email domain, so use a work email address. Your email address will not be
@@ -287,20 +682,80 @@
 				<div class="confirmationDiv">
 					<p class="confHeading">Is it okay for recruiters and other intermediaries to contact you about this
 						post?</p>
-					<input type="radio" name="intermediaries" value="no" /><span>No, it is NOT OK</span>
+					<input type="radio" name="intermediaries" value="no" class="form-check-input"
+						style="margin-right: 5px;" /><span>No, it is NOT OK</span>
 					<br>
-					<input type="radio" name="intermediaries" value="yes" /><span>Yes, recruiters may contact me</span>
+					<input type="radio" name="intermediaries" value="yes" class="form-check-input"
+						style="margin-right: 5px;" /><span>Yes, recruiters may contact me</span>
 					<p>We’ll display a notice to this effect on the post</p>
 				</div>
 				<div class="warningDiv">
 					<p class="warningHeading">Warning: Many recruiters will ignore your preference and contact you
 						anyway. Do not reveal your phone number in the post. If you receive an email, please report it
 						to support@hasgeek.com and we will block their account</p>
-					<button type="submit" class="submitButton">Review you post...</button>
+					<button type="submit" class="btn submitButton"
+						style="background-color: #49a5ba;color: white;">Review you post...</button>
 				</div>
 			</div>
 		</form>
 	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<script>
+		let filterInputs = document.getElementsByClassName("filterInput");
+		let filterPayInputs = document.getElementsByClassName("filterPay");
+		let filterRangeInput = document.getElementById("filterRange");
+		let filterRangeButton = document.getElementById("filterRangeButton");
+		let filterSearchInput = document.getElementById("filterSearch");
+		let paymentRange1 = document.getElementById("paymentRange1");
+		let paymentRange2 = document.getElementById("paymentRange2");
+		let paymentRangeBtn1 = document.getElementById("paymentRangeBtn1");
+		let paymentRangeBtn2 = document.getElementById("paymentRangeBtn2");
+		let timer;
+		for (let i = 0; i < filterInputs.length; i++) {
+			filterInputs[i].addEventListener('click', () => {
+				let myform = document.getElementById("filterForm");
+				myform.submit();
+			});
+		}
+
+		for (let i = 0; i < filterPayInputs.length; i++) {
+			filterPayInputs[i].addEventListener('click', () => {
+				let myform = document.getElementById("filterForm");
+				myform.submit();
+			});
+		}
+
+		filterRangeInput.addEventListener('change', () => {
+			let myform = document.getElementById("filterForm");
+			myform.submit();
+		})
+
+		filterRangeInput.addEventListener('input', () => {
+			filterRangeButton.innerHTML = filterRangeInput.value;
+		})
+
+		filterSearchInput.addEventListener('input', () => {
+			clearTimeout(timer);
+
+			timer = setTimeout(function () {
+				let myform = document.getElementById("filterForm");
+				myform.submit();
+			}, 700);
+		})
+
+		paymentRangeBtn1.addEventListener('input', () => {
+			paymentRange1.innerHTML = paymentRangeBtn1.value;
+		})
+
+		paymentRangeBtn2.addEventListener('input', () => {
+			paymentRange2.innerHTML = paymentRangeBtn2.value;
+		})
+
+
+	</script>
 </body>
 
 </html>
