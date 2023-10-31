@@ -30,6 +30,7 @@ public class User {
 	private long mobileNo;
 	@Column(name = "primary_email",nullable = false)
 	private String primaryEmail;
+	private String role = "ROLE_USER";
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	List<Application> applications;
@@ -41,8 +42,11 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public User(int id, String name, List<String> emails, String userName, String password, String timezone,
-			long mobileNo, String primaryEmail) {
+			long mobileNo, String primaryEmail, String role, List<Application> applications,
+			List<Organization> organizations) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -52,7 +56,49 @@ public class User {
 		this.timezone = timezone;
 		this.mobileNo = mobileNo;
 		this.primaryEmail = primaryEmail;
+		this.role = role;
+		this.applications = applications;
+		this.organizations = organizations;
 	}
+
+
+
+	
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+
+
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
+	}
+
+
+
+	public List<Organization> getOrganizations() {
+		return organizations;
+	}
+
+
+
+	public void setOrganizations(List<Organization> organizations) {
+		this.organizations = organizations;
+	}
+
+
 
 	public int getId() {
 		return id;

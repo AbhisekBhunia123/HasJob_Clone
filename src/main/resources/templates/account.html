@@ -1,10 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.infoAccountDiv,
+		.emailMobileDiv {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 50% 50%;
+		}
+
+		.infoDiv,
+		.connectedAccountDiv,
+		.emailDiv,
+		.mobileDiv {
+			width: 90%;
+		}
+
+		.infoBtn:hover {
+			background-color: rgba(0, 0, 0, .03);
+		}
+	</style>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
-	
+
+	<div
+		style="width: 100%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);position:fixed;z-index: 1;background-color: white;">
+		<div class="container" style="width:60%">
+			<div style="display:grid;grid-template-columns: 20% 40% 50%; padding: 10px;">
+				<div>Logo</div>
+				<div><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+						style="border-radius: 20px;"></div>
+				<div style="display: flex;justify-content: center;align-items: center;"><button class="btn"
+						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;margin-right: 10px;display: flex;justify-content: center;align-items: center;"><i class="fa fa-bell-o" aria-hidden="true" style="margin:0;padding:0;font-size: 20px;"></i></button>
+					<button class="btn"
+						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;margin-right: 10px;display: flex;justify-content: center;align-items: center;"><i class="fa fa-comment-o" aria-hidden="true" style="margin:0;padding: 0;font-size: 20px;"></i></button>
+					<button class="btn"
+						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;background-color: #B6EF07;color: white;" th:text="${user.name.charAt(0)+''.toUpperCase()}"></button>
+				</div>
+			</div>
+			<div style="display:flex; padding: 20px;">
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a href="#"><button class="btn"
+						style="border: 1px solid gray;border-radius: 20px;">Account</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/organization}"><button class="btn"
+						style="border: 1px solid gray;border-radius: 20px;">Organizations</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/notification}"><button class="btn"
+						style="border: 1px solid gray;border-radius: 20px;">Notifications</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a  th:href="@{/contact}"><button class="btn"
+						style="border: 1px solid gray;border-radius: 20px;">Contacts</button></a></div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container" style="position: absolute;width: 60%;top:160px;margin-left: 20%;z-index: -1">
+		<div class="accountImageDiv" style="display: grid;grid-template-columns: 110px 70%">
+			<div>
+				<div style="width: 100px;height: 100px; border-radius: 50%;background-color: #B6EF07;color: white;display: flex;justify-content: center;align-items: center;font-size: 30px;"
+					th:text="${user.name.charAt(0)+''.toUpperCase()}"></div>
+			</div>
+			<div>
+				<p th:text="${user.name}"></p>
+				<a th:href="@{/showupdate}" style="text-decoration: none;">
+					<p>Add username +</p>
+				</a>
+				<a th:href="@{/account}" style="text-decoration: none;">
+					<p>Go to account -></p>
+				</a>
+			</div>
+		</div>
+		<div class="infoAccountDiv">
+			<div class="infoDiv card">
+				<div class="card-header" style="font-size: 18px; font-weight: bold;">
+					Info
+				</div>
+				<div class="card-body">
+					<p class="card-text"><i class="fa fa-user-o" style="margin-right: 5px;"></i><span
+							th:text="${user.name}"></span></p>
+					<p class="card-text"><i class="fa fa-at" aria-hidden="true"
+							style="font-size: 20px;color: black;margin-right: 5px;"></i>(none)</p>
+					<p class="card-text"><i class="fa fa-clock-o" aria-hidden="true"
+							style="font-size: 20px;color: black;margin-right: 5px;"></i> None <small>From device</small>
+					</p>
+					<p class="card-text"><i class="fa fa-language" aria-hidden="true"
+							style="font-size: 20px;color: black;margin-right: 5px;"></i> English <small>From
+							device</small></p>
+				</div>
+				<div class="card-footer">
+					<a th:href="@{/showupdate}"><button class="btn infoBtn"
+							style="font-size: 15px;color:#19B3DC">EDIT</button></a>
+					<a th:href="@{/showSetPassword}"><button class="btn infoBtn"
+							style="font-size: 15px;color:#DC5519">SET PASSWORD</button></a>
+					<form th:action="@{/account/logout}" method="post" style="display: inline;">
+						<button class="btn infoBtn" style="font-size: 15px;color:#DC5519">LOGOUT</button>
+					</form>
+				</div>
+			</div>
+			<div class="connectedAccountDiv card" style="height: 150px;">
+				<div class="card-header" style="font-size: 18px; font-weight: bold;">
+					Connected accounts
+				</div>
+				<div class="card-body">
+					<hr>
+					<div style="display: flex;justify-content: space-evenly;">
+						<a href="#"><img th:src="@{/images/google.png}" style="border-radius: 50%;" /></a>
+						<a><img src="/images/github.png" style="border-radius: 50%;" /></a>
+						<a><img src="/images/linkedin.png" style="width: 40px;height: 40px; border-radius: 50%;" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="emailMobileDiv" style="margin-top: 30px;">
+			<div class="emailDiv card">
+				<div class="card-header" style="font-size: 18px; font-weight: bold;">
+					Email addresses
+				</div>
+				<div class="card-body">
+					<form th:action="@{/setasprimary}" method="post" style="display: inline;">
+						<input type="hidden" name="userId" th:value="${user.id}" />
+						<div th:each="email, emailStat : ${user.emails}">
+							<span style="margin-right: 5px;" th:text="${emailStat.index + 1 + '.'}"></span><input
+								type="radio" class="form-check-input" style="margin-right: 5px;"
+								th:checked="${email.equals(user.primaryEmail)}" th:value="${email}"
+								name="primeryEmail" /><span th:text="${email}"><img src="/images/tick.png" /></span><span th:if="${email.equals(user.primaryEmail)}"><img src="/images/tick.png" /></span>
+						</div>
+
+						<hr>
+						<button class="btn infoBtn" style="font-size: 15px;color:#19B3DC">SET AS PRIMARY</button>
+					</form>
+					<a th:href="@{/showaddemailpage}"><button class="btn infoBtn"
+							style="font-size: 15px;color:#DC5519">ADD AN EMAIL ADDRESS</button></a>
+				</div>
+			</div>
+			<div class="mobileDiv card" style="height: 150px;">
+				<div class="card-header" style="font-size: 18px; font-weight: bold;">
+					Mobile numbers
+				</div>
+				<div class="card-body">
+					<hr>
+					<button class="btn infoBtn" style="font-size: 15px;color:#DC5519">ADD A MOBILE NUMBER</button>
+				</div>
+			</div>
+		</div>
+		<div class="connectedAppDiv card" style="margin-top: 30px;">
+			<div class="card-header" style="font-size: 18px; font-weight: bold;">
+				Connected apps
+			</div>
+			<div class="card-body">
+				<span><a href="#">Hasjob</a><img src="../images/checked.png" /> -Hasgeek job board</span>
+				<p>Since 24 Oct 2023-last used 2 hour ago</p>
+				<hr>
+				<span><a href="#">Imgee</a><img src="/images/checked.png" /> -Hasgeek image manager</span>
+				<p>Since 24 Oct 2023-last used 2 hour ago</p>
+			</div>
+		</div>
+		<div class="LoginSessionDiv card" style="margin-top: 30px;">
+			<div class="card-header" style="font-size: 18px; font-weight: bold;">
+				Login sessions
+			</div>
+			<div class="card-body">
+				<div style="display: grid;grid-template-columns: 80% 20%;">
+					<p>Chrome 116.0.0 on Linux</p>
+					<img src="/images/tick.png" style="float: right;" />
+				</div>
+				<p>Since 4 days ago via OTP – last active seconds ago</p>
+				<p>India; TATA Communications formerly VSNL is Leading ISP – estimated from 219.65.66.66</p>
+			</div>
+		</div>
+		<div class="DeleteAccountDiv card" style="margin-top: 30px;margin-bottom: 30px;">
+			<div class="card-header"
+				style="font-size: 18px; font-weight: bold;background-color: rgba(255,0,0,0.3);color: red;">
+				Delete account
+			</div>
+			<div class="card-body">
+				<p>If you no longer need this account, you can delete it. If you have a duplicate account, you can merge
+					it by adding the same phone number or email address here. No deletion necessary.</p>
+				<hr>
+				<form th:action="@{/delete}" method="post">
+					<input type="hidden" name="id" th:value="${user.id}" />
+					<button class="btn infoBtn" style="font-size: 15px;color:#DC5519">DELETE THIS ACCOUNT</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 </body>
+
 </html>

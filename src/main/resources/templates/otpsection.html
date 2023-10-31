@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+	<title>OTP Grid Section</title>
+	<style>
+
+	</style>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+		<div class="container shadow p-3 mb-5 bg-body rounded codeSection" style="width: 400px;margin-top: 200px;">
+		<h3 class="text-center">Enter Your Code</h3>
+		<form autocomplete="off" th:action="@{/userlogin}" method="post">
+			<div class="mb-3 d-flex flex-row justify-content-center">
+				<input type="text" class="form-control code" maxlength="1" id="code1" name="c1" />
+				<input type="text" class="form-control code" maxlength="1" id="code2" name="c2" />
+				<input type="text" class="form-control code" maxlength="1" id="code3" name="c3" />
+				<input type="text" class="form-control code" maxlength="1" id="code4" name="c4" />
+				<input type="text" class="form-control code" maxlength="1" id="code5" name="c5" />
+				<input type="text" class="form-control code" maxlength="1" id="code6" name="c6" />
+				<input type="hidden" class="form-control hiddenudata" name="username" th:value="${username}" />
+				<input type="hidden" class="form-control hiddenudata" name="email" th:value="${email}" />
+				<input type="hidden" class="form-control hiddenudata" name="password" th:value="${password}" />
+			</div>
+			<div class="mb-3 d-flex flex-row justify-content-center">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+
+		</form>
+	</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<script>
+		const codes = document.querySelectorAll('.code');
+
+		codes[0].focus();
+
+		codes.forEach((code, idx) => {
+			code.addEventListener('keydown', (e) => {
+				if (e.key >= 0 && e.key <= 9) {
+					codes[idx].value = ""
+					setTimeout(() => codes[idx + 1].focus(), 10)
+				} else if (e.key === 'Backspace') {
+					setTimeout(() => codes[idx - 1].focus(), 10)
+				}
+			})
+		})
+	</script>
+</body>
+</body>
+
+</html>

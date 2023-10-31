@@ -20,6 +20,7 @@ import com.job.Daos.JobDao;
 import com.job.Daos.OrganizationDao;
 import com.job.entities.Job;
 import com.job.entities.Organization;
+import com.job.entities.User;
 
 @Service
 public class JobPostServices {
@@ -34,7 +35,7 @@ public class JobPostServices {
 	public boolean publishJob(String headline, String headlineB, String type, String category, String location,
 			String description, String jobPerks, String jobPay, float equityCompensection, String jobNeed,
 			String intermediaries, String organizationName, String url, String email, String collaborators,
-			MultipartFile logo,String payType,String payRange) {
+			MultipartFile logo,String payType,String payRange,User user) {
 		boolean isPublished = false;
 		Date openedAt = new Date();
 		Calendar calendar = Calendar.getInstance();
@@ -43,7 +44,7 @@ public class JobPostServices {
 		Date closedAt = calendar.getTime();
 		Organization organization = organizationDao.findByEmail(email);
 		if (organization == null) {
-			boolean isCreated = organizationDao.createOrganization(organizationName, url, email, collaborators, logo);
+			boolean isCreated = organizationDao.createOrganization(organizationName, url, email, collaborators, logo,user);
 			if (isCreated) {
 				Organization org = organizationDao.findByEmail(email);
 				boolean isSaved = jobDao.saveJob(headline, headlineB, type, category, location, description, jobPerks,
@@ -94,9 +95,9 @@ public class JobPostServices {
 		return jobDao.getJobsInLocation(location);
 	}
 	
-	public boolean applyForJob(String applicantName,String applicantEmail,String applicantPhone,String applicantDetails,int jobId) {
+	public boolean applyForJob(String applicantName,String applicantEmail,String applicantPhone,String applicantDetails,int jobId,User user) {
 		boolean isApplied = false;
-		boolean isSave = jobDao.saveApply(applicantName,applicantEmail,applicantPhone,applicantDetails,jobId);
+		boolean isSave = jobDao.saveApply(applicantName,applicantEmail,applicantPhone,applicantDetails,jobId,user);
 		if(isSave) {
 			isApplied = true;
 		}

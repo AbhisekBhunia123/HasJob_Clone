@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta charset="UTF-8">
@@ -415,7 +415,11 @@
 						</div>
 					</div>
 					<div>
-						<form th:action="@{/apply}" method="post">
+						<div class="container text-center" sec:authorize="!isAuthenticated()" style="padding: 30px;">
+							<a th:href="@{/loginpage}"><button class="btn btn-primary" styl>Login For Apply</button></a>
+						</div>
+						
+						<form th:action="@{/apply}" method="post" sec:authorize="isAuthenticated()">
 							<input type="hidden" name="jobId" th:value="${job.id}" />
 							<p style="font-size: 25px;margin-top: 10px;color: #7281a6;font-weight: bold;">Apply for this position</p>
 							<small>Linkedin and GitHut profiles</small>
@@ -437,7 +441,7 @@
 								<div>
 									<input type="radio" name="empEmail" class="form-check-input"
 										style="margin-right: 5px;"
-										value="abhisekbhunia5@gmail.com" /><span>abhisekbhunia5@gmail.com</span>
+										th:value="${#authentication.name}" /><span th:text="${#authentication.name}"></span>
 									<p>Add new email addresses from your profile</p>
 								</div>
 							</div>

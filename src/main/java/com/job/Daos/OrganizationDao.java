@@ -12,13 +12,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.job.Repositories.OrganizationRepo;
 import com.job.entities.Organization;
+import com.job.entities.User;
 
 @Repository
 public class OrganizationDao {
 	@Autowired
 	OrganizationRepo organizationRepo;
 	
-	public boolean createOrganization(String name,String url,String email,String collaborators,MultipartFile logo) {
+	public boolean createOrganization(String name,String url,String email,String collaborators,MultipartFile logo,User user) {
 		boolean isCreated = false;
 		try {
 			
@@ -29,6 +30,7 @@ public class OrganizationDao {
 			organization.setEmail(email);
 			organization.setCollaborators(collaborators);
 			organization.setLogo(logoImage);
+			organization.setUser(user);
 			organizationRepo.save(organization);
 			isCreated = true;
 			

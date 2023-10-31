@@ -442,7 +442,7 @@
 	</div>
 	<div class="container card mainDiv"
 		style="width:50%;position: absolute;top: 140px; margin-left: 25%; margin-bottom: 100px; z-index: -1;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-		<form method="post" action="/postjob" enctype="multipart/form-data">
+		<form method="post" th:action="@{/postjob}" enctype="multipart/form-data">
 			<div class="section">
 				<div class="titleDiv">
 					<p class="titleHeading">Post a job</p>
@@ -481,24 +481,24 @@
 					</div>
 					<div class="subDiv2">
 						<input type="radio" name="type" value="Full-time employment" class="form-check-input"
-							style="margin-right: 5px;" /><span>Full-time employment</span>
+							style="margin-right: 5px;" required /><span>Full-time employment</span>
 						<br>
 						<input type="radio" name="type" value="Short-term contract" class="form-check-input"
-							style="margin-right: 5px;" /><span>Short-term contract</span>
+							style="margin-right: 5px;" required /><span>Short-term contract</span>
 						<br>
 						<input type="radio" name="type" value="Internship" class="form-check-input"
-							style="margin-right: 5px;" /><span>Internship</span>
+							style="margin-right: 5px;" required /><span>Internship</span>
 						<br>
 						<input type="radio" name="type" value="Freelance or consulting" class="form-check-input"
-							style="margin-right: 5px;" /><span>Freelance or
+							style="margin-right: 5px;" required /><span>Freelance or
 							consulting</span>
 						<br>
 						<input type="radio" name="type" value="Volunteer contributor" class="form-check-input"
-							style="margin-right: 5px;" /><span>Volunteer
+							style="margin-right: 5px;" required /><span>Volunteer
 							contributor</span>
 						<br>
 						<input type="radio" name="type" value="Partner for a venture" class="form-check-input"
-							style="margin-right: 5px;" /><span>Partner for a venture
+							style="margin-right: 5px;" required /><span>Partner for a venture
 						</span>
 					</div>
 				</div>
@@ -508,44 +508,44 @@
 					</div>
 					<div class="subDiv2">
 						<input type="radio" name="category" value="Programming" class="form-check-input"
-							style="margin-right: 5px;" /><span>Programming</span>
+							style="margin-right: 5px;" required /><span>Programming</span>
 						<br>
 						<input type="radio" name="category" value="Interaction Design" class="form-check-input"
-							style="margin-right: 5px;" /><span>Interaction Design</span>
+							style="margin-right: 5px;" required /><span>Interaction Design</span>
 						<br>
 						<input type="radio" name="category" value="Graphic Design" class="form-check-input"
-							style="margin-right: 5px;" /><span>Graphic Design</span>
+							style="margin-right: 5px;" required /><span>Graphic Design</span>
 						<br>
 						<input type="radio" name="category" value="Electronics" class="form-check-input"
-							style="margin-right: 5px;" /><span>Electronics</span>
+							style="margin-right: 5px;" required /><span>Electronics</span>
 						<br>
 						<input type="radio" name="category" value="Information Security" class="form-check-input"
-							style="margin-right: 5px;" /><span>Information
+							style="margin-right: 5px;" required /><span>Information
 							Security</span>
 						<br>
 						<input type="radio" name="category" value="Testing/Quality Assurance" class="form-check-input"
-							style="margin-right: 5px;" /><span>Testing/Quality
+							style="margin-right: 5px;" required /><span>Testing/Quality
 							Assurance</span>
 						<br>
 						<input type="radio" name="category" value="IT/Systems Administration" class="form-check-input"
-							style="margin-right: 5px;" /><span>IT/Systems
+							style="margin-right: 5px;" required /><span>IT/Systems
 							Administration</span>
 						<br>
 						<input type="radio" name="category" value="Business/Management" class="form-check-input"
-							style="margin-right: 5px;" /><span>Business/Management</span>
+							style="margin-right: 5px;" required /><span>Business/Management</span>
 						<br>
 						<input type="radio" name="category" value="Writer/Editor" class="form-check-input"
-							style="margin-right: 5px;" /><span>Writer/Editor</span>
+							style="margin-right: 5px;" required /><span>Writer/Editor</span>
 						<br>
 						<input type="radio" name="category" value="Customer Support" class="form-check-input"
-							style="margin-right: 5px;" /><span>Customer Support</span>
+							style="margin-right: 5px;" required /><span>Customer Support</span>
 						<br>
 						<input type="radio" name="category" value="Mobile (iPhone, Android, other)"
-							class="form-check-input" style="margin-right: 5px;" /><span>Mobile
+							class="form-check-input" style="margin-right: 5px;" required /><span>Mobile
 							(iPhone, Android, other)</span>
 						<br>
 						<input type="radio" name="category" value="Office Administration" class="form-check-input"
-							style="margin-right: 5px;" /><span>Office
+							style="margin-right: 5px;" required /><span>Office
 							Administration</span>
 					</div>
 				</div>
@@ -580,20 +580,20 @@
 				<div class="payDiv">
 					<p>What does this job pay?</p>
 					<input type="radio" name="jobPay" value="Nothing" class="form-check-input"
-						style="margin-right: 5px;" /><span>Nothing</span>
+						style="margin-right: 5px;" required /><span>Nothing</span>
 					<input type="radio" name="jobPay" value="One-time" class="form-check-input"
-						style="margin-right: 5px;" /><span>One-time</span>
+						style="margin-right: 5px;" required /><span>One-time</span>
 					<input type="radio" name="jobPay" value="Recurring" class="form-check-input"
-						style="margin-right: 5px;" /><span>Recurring</span>
+						style="margin-right: 5px;"  required /><span>Recurring</span>
 					<br>
 					<br>
 					<p>Currency</p>
 					<input type="radio" name="payType" value="INR" class="form-check-input"
-						style="margin-right: 5px;" /><span>INR</span>
+						style="margin-right: 5px;" required /><span>INR</span>
 					<input type="radio" name="payType" value="USD" class="form-check-input"
-						style="margin-right: 5px;" /><span>USD</span>
+						style="margin-right: 5px;" required /><span>USD</span>
 					<input type="radio" name="payType" value="EUR" class="form-check-input"
-						style="margin-right: 5px;" /><span>EUR</span>
+						style="margin-right: 5px;" required /><span>EUR</span>
 
 					<br>
 					<p id="paymentRange1"></p>
@@ -683,10 +683,10 @@
 					<p class="confHeading">Is it okay for recruiters and other intermediaries to contact you about this
 						post?</p>
 					<input type="radio" name="intermediaries" value="no" class="form-check-input"
-						style="margin-right: 5px;" /><span>No, it is NOT OK</span>
+						style="margin-right: 5px;" required /><span>No, it is NOT OK</span>
 					<br>
 					<input type="radio" name="intermediaries" value="yes" class="form-check-input"
-						style="margin-right: 5px;" /><span>Yes, recruiters may contact me</span>
+						style="margin-right: 5px;" required /><span>Yes, recruiters may contact me</span>
 					<p>We’ll display a notice to this effect on the post</p>
 				</div>
 				<div class="warningDiv">

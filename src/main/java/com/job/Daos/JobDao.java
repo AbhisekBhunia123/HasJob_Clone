@@ -15,6 +15,7 @@ import com.job.Repositories.OrganizationRepo;
 import com.job.entities.Application;
 import com.job.entities.Job;
 import com.job.entities.Organization;
+import com.job.entities.User;
 
 @Repository
 public class JobDao {
@@ -85,7 +86,7 @@ public class JobDao {
 		return jobsRepo.findByLocation(location);
 	}
 	
-	public boolean saveApply(String applicantName,String applicantEmail,String applicantPhone,String applicantDetails,int jobId) {
+	public boolean saveApply(String applicantName,String applicantEmail,String applicantPhone,String applicantDetails,int jobId,User user) {
 		boolean isSaved = false;
 		try {
 			Job job = jobsRepo.findById(jobId).get();
@@ -96,6 +97,7 @@ public class JobDao {
 			application.setNeed(applicantDetails);
 			application.setApplyAt(new Date());
 			application.setJob(job);
+			application.setUser(user);
 			applicationRepo.save(application);
 			isSaved = true;
 		}catch(Exception e) {

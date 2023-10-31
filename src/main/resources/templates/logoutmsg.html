@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container text-center">
+			<h1 style="font-size: 20px; font-weight: bold;font-family: Arial, Helvetica, sans-serif;color: #19B5DC;margin-top: 300px;">You changed your primary email so for double check we redirect you to login page .. </h1>
+	</div>
+
+	<form th:action="@{/account/logout}" method="post" id="myForm">
+		<div class="mb-3">
+			<input type="hidden" class="form-control" id="exampleInputPassword1" name="username" th:value="${email}">
+		</div>
+		<div class="mb-3">
+			<input type="hidden" class="form-control" id="exampleInputPassword1" name="password"
+				th:value="${password}">
+		</div>
+
+	</form>
+
+	<script>
+		let myform = document.getElementById("myForm");
+		setTimeout(function () {
+			myform.submit();
+		}, 3000);
+
+	</script>
+</body>
+
+</html>

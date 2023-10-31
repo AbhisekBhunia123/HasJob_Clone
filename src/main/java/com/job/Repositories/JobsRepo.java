@@ -18,6 +18,7 @@ public interface JobsRepo extends JpaRepository<Job, Integer> {
 	public List<Job> findByLocation(String location);
 	
 	@Query("SELECT j FROM Job j " +
+				"LEFT JOIN j.organization o " +
 		       "WHERE ((:type is null OR j.type IN :type) " +
 		       "AND (:category is null OR j.category IN :category)"
 		       + "AND (:location is null OR j.location IN :location)"
@@ -25,6 +26,9 @@ public interface JobsRepo extends JpaRepository<Job, Integer> {
 		       + "AND (:payRange is null OR j.payRange <= :payRange ))"
 		       +" AND ((:searchText is null OR (j.location LIKE CONCAT('%', :searchText, '%')"
 		       + "OR j.type LIKE CONCAT('%', :searchText, '%')"
+		       + "OR j.headline LIKE CONCAT('%', :searchText, '%')"
+		       + "OR j.description LIKE CONCAT('%', :searchText, '%')"
+		       + "OR o.name LIKE CONCAT('%', :searchText, '%')"
 		       + "OR j.category LIKE CONCAT('%', :searchText, '%'))))")
 		List<Job> filterJob(@Param("type") String[] type,
 		                               @Param("category") String[] category,
@@ -35,12 +39,16 @@ public interface JobsRepo extends JpaRepository<Job, Integer> {
 		                              );
 	
 	@Query("SELECT j FROM Job j " +
+				"LEFT JOIN j.organization o " +
 		       "WHERE ((:type is null OR j.type IN :type) " +
 		       "AND (:category is null OR j.category IN :category)"
 		       + "AND (:location is null OR j.location IN :location)"
 		       + "AND (:payType is null OR j.payType IN :payType))"
 		       +" AND ((:searchText is null OR (j.location LIKE CONCAT('%', :searchText, '%')"
 		       + "OR j.type LIKE CONCAT('%', :searchText, '%')"
+		       + "OR j.headline LIKE CONCAT('%', :searchText, '%')"
+		       + "OR j.description LIKE CONCAT('%', :searchText, '%')"
+		       + "OR o.name LIKE CONCAT('%', :searchText, '%')"
 		       + "OR j.category LIKE CONCAT('%', :searchText, '%'))))")
 	List<Job> filterJobWithOutPay(@Param("type") String[] type,
             @Param("category") String[] category,
