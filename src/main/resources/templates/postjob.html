@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta charset="UTF-8">
@@ -69,7 +69,6 @@
 		}
 
 
-		<!--end nav style-->
 		.section {
 			width: 100%;
 			height: auto;
@@ -175,12 +174,31 @@
 			<div class="container-fluid navbarDiv">
 				<div class="container navHeadingDiv">
 					<div class="navHeading">
-						<img src="" /><span>The Hasgeek Job Board</span>
+						<a th:href="@{/}"><img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpTFaf18osJm4jz-Bc-o_niu3N1peQoXLon2X9UUQYQZPcFqg79_jY_RReX8jBjkzMxac&usqp=CAU"
+								style="width:50px;height: 50px;border-radius: 50%;" /></a><span
+							style="font-size: 30px;font-weight: bold;margin-left: 5px;">HasJob</span><span
+							style="font-size: 20px;font-weight: bold;font-family: Arial, Helvetica, sans-serif;margin-left: 5px;">The
+							Hasgeek Job Board</span>
 					</div>
 					<div class="navPost">
-						<button class="btn btn-small"
-							style="border: 1px solid gray;height:30px;padding:5px;background-color:green;color: white;">Login</button>
-						<span><i class="fa fa-th" aria-hidden="true" style="font-size: 20px;color: black;"></i></span>
+						<a th:href="@{/loginpage}" sec:authorize="!isAuthenticated()">
+							<button class="btn btn-small"
+								style="border: 1px solid gray;height:30px;padding:5px;background-color:green;color: white;">Login</button>
+						</a>
+						<button class="btn " data-bs-toggle="dropdown" aria-expanded="false" role="button" sec:authorize="isAuthenticated()"
+							style="width:40px;height:40px;"><i
+								class="fa fa-user" aria-hidden="true"></i></button>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown" sec:authorize="isAuthenticated()">
+							<li><a class="dropdown-item" th:href="@{/account}" th:text="${#authentication.name}"></a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li>
+								<form th:action="@{/account/logout}" method="post"><button class="btn dropdown-item"
+										type="submit">Logout</button></form>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<form th:action="@{/multifilter}" method="post" id="filterForm">
@@ -441,8 +459,8 @@
 		</div>
 	</div>
 	<div class="container card mainDiv"
-		style="width:50%;position: absolute;top: 140px; margin-left: 25%; margin-bottom: 100px; z-index: -1;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-		<form method="post" th:action="@{/postjob}" enctype="multipart/form-data">
+		style="width:50%;position: absolute;top: 170px; margin-left: 25%; margin-bottom: 100px; z-index: -1;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+		<form method="post" th:action="@{/account/postjob}" enctype="multipart/form-data">
 			<div class="section">
 				<div class="titleDiv">
 					<p class="titleHeading">Post a job</p>
@@ -584,16 +602,16 @@
 					<input type="radio" name="jobPay" value="One-time" class="form-check-input"
 						style="margin-right: 5px;" required /><span>One-time</span>
 					<input type="radio" name="jobPay" value="Recurring" class="form-check-input"
-						style="margin-right: 5px;"  required /><span>Recurring</span>
+						style="margin-right: 5px;" required /><span>Recurring</span>
 					<br>
 					<br>
 					<p>Currency</p>
-					<input type="radio" name="payType" value="INR" class="form-check-input"
-						style="margin-right: 5px;" required /><span>INR</span>
-					<input type="radio" name="payType" value="USD" class="form-check-input"
-						style="margin-right: 5px;" required /><span>USD</span>
-					<input type="radio" name="payType" value="EUR" class="form-check-input"
-						style="margin-right: 5px;" required /><span>EUR</span>
+					<input type="radio" name="payType" value="INR" class="form-check-input" style="margin-right: 5px;"
+						required /><span>INR</span>
+					<input type="radio" name="payType" value="USD" class="form-check-input" style="margin-right: 5px;"
+						required /><span>USD</span>
+					<input type="radio" name="payType" value="EUR" class="form-check-input" style="margin-right: 5px;"
+						required /><span>EUR</span>
 
 					<br>
 					<p id="paymentRange1"></p>

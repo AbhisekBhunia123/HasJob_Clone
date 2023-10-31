@@ -3,6 +3,7 @@ package com.job.controllers;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -45,8 +46,14 @@ public class UserController {
 			@RequestParam("email") String email, @RequestParam("password") String password) {
 		try {
 			User user = userServices.findByEmail(email);
-			if (user != null) {
+			List<User> users = userServices.findAllUser();
+			if (user != null){
 				return "redirect:/";
+			}
+			for(User u : users) {
+				if(u.getEmails().contains(email)) {
+					return "redirect:/";
+				}
 			}
 			String otp = userServices.generateOTP();
 			Token existToken = tokenRepo.findByEmail(email);
@@ -96,13 +103,14 @@ public class UserController {
 		return "submitform"; 
 	}
 	
-	@PostMapping("/delete")
-	public String deleteAccount(@RequestParam("id") int userId) {
+	@PostMapping("/account/delete")
+	public String deleteAccount(@RequestParam("id") int userId,Model model) {
 		userServices.deleteAccount(userId);
-		return "redirect:/";
+		model.addAttribute("msg","Your account has been deleted....");
+		return "logoutmsg";
 	}
 	
-	@GetMapping("/showupdate")
+	@GetMapping("/account/showupdate")
 	public String showUpdateProfile(Model model,
 			Authentication authentication) {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -112,7 +120,7 @@ public class UserController {
 		return "updateprofile";
 	}
 	
-	@PostMapping("/updateuser")
+	@PostMapping("/account/updateuser")
 	public String updateUserDetails(
 			@RequestParam("name") String name,
 			@RequestParam("username") String username,
@@ -122,7 +130,7 @@ public class UserController {
 		return "redirect:/account";
 	}
 	
-	@GetMapping("/showSetPassword")
+	@GetMapping("/account/showSetPassword")
 	public String showSetPassword(Model model,Authentication authentication) {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String username = userDetails.getUsername();
@@ -131,7 +139,7 @@ public class UserController {
 		return "setpassword";
 	}
 	
-	@PostMapping("/setpassword")
+	@PostMapping("/account/setpassword")
 	public String setpassword(
 			@RequestParam("userId") int userId,
 			@RequestParam("password") String password,
@@ -141,7 +149,7 @@ public class UserController {
 		return "redirect:/account";
 	}
 	
-	@GetMapping("/showaddemailpage")
+	@GetMapping("/account/showaddemailpage")
 	public String addEmail(Model model,Authentication authentication) {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String username = userDetails.getUsername();
@@ -151,7 +159,7 @@ public class UserController {
 		return "addemailpage";
 	}
 	
-	@PostMapping("/addemail")
+	@PostMapping("/account/addemail")
 	public String addEmailWithOTP(Model model,@RequestParam("email") String email,Authentication authentication) {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		String username = userDetails.getUsername();
@@ -180,7 +188,7 @@ public class UserController {
 		return "addemailpage";
 	}
 	
-	@PostMapping("/directaddemail")
+	@PostMapping("/account/directaddemail")
 	public String directAddEmail(@RequestParam("userId") int userId,
 			@RequestParam("email") String email,
 			@RequestParam("c1") String c1, @RequestParam("c2") String c2, @RequestParam("c3") String c3,
@@ -195,9 +203,10 @@ public class UserController {
 		return "redirect:/account";
 	}
 	
-	@PostMapping("/setasprimary")
-	public String setAsPrimary(@RequestParam("userId") int userId,@RequestParam("primeryEmail") String email) {
+	@PostMapping("/account/setasprimary")
+	public String setAsPrimary(@RequestParam("userId") int userId,@RequestParam("primeryEmail") String email,Model model) {
 		userServices.setAsPrimary(userId,email);
+		model.addAttribute("msg","You changed your primary email so for double check we redirect you to login page .. ");
 		return "logoutmsg";
 	}
 

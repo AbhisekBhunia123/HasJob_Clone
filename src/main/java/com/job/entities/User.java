@@ -1,5 +1,6 @@
 package com.job.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -10,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "users")
@@ -28,21 +28,19 @@ public class User {
 	private String timezone;
 	@Column(name = "mobile_no")
 	private long mobileNo;
-	@Column(name = "primary_email",nullable = false)
+	@Column(name = "primary_email", nullable = false)
 	private String primaryEmail;
 	private String role = "ROLE_USER";
-	
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	List<Application> applications;
-	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	List<Organization> organizations;
-	
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
 
 	public User(int id, String name, List<String> emails, String userName, String password, String timezone,
 			long mobileNo, String primaryEmail, String role, List<Application> applications,
@@ -61,44 +59,29 @@ public class User {
 		this.organizations = organizations;
 	}
 
-
-
-	
 	public String getRole() {
 		return role;
 	}
-
-
 
 	public void setRole(String role) {
 		this.role = role;
 	}
 
-
-
 	public List<Application> getApplications() {
 		return applications;
 	}
-
-
 
 	public void setApplications(List<Application> applications) {
 		this.applications = applications;
 	}
 
-
-
 	public List<Organization> getOrganizations() {
 		return organizations;
 	}
 
-
-
 	public void setOrganizations(List<Organization> organizations) {
 		this.organizations = organizations;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -163,9 +146,5 @@ public class User {
 	public void setPrimaryEmail(String primaryEmail) {
 		this.primaryEmail = primaryEmail;
 	}
-	
-	
-	
-	
-	
+
 }

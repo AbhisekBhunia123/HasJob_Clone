@@ -16,7 +16,7 @@
 		style="width: 100%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);position:fixed;z-index: 1;background-color: white;">
 		<div class="container" style="width:60%">
 			<div style="display:grid;grid-template-columns: 20% 40% 50%; padding: 10px;">
-				<div>Logo</div>
+				<div><a th:href="@{/}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpTFaf18osJm4jz-Bc-o_niu3N1peQoXLon2X9UUQYQZPcFqg79_jY_RReX8jBjkzMxac&usqp=CAU" style="width:50px;height: 50px;" /></a></div>
 				<div><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
 						style="border-radius: 20px;"></div>
 				<div style="display: flex;justify-content: center;align-items: center;"><button class="btn"
@@ -27,22 +27,32 @@
 						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;margin-right: 10px;display: flex;justify-content: center;align-items: center;"><i
 							class="fa fa-comment-o" aria-hidden="true"
 							style="margin:0;padding: 0;font-size: 20px;"></i></button>
-					<button class="btn"
+					<button class="btn " data-bs-toggle="dropdown" aria-expanded="false" role="button"
 						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;background-color: #B6EF07;color: white;"
 						th:text="${user.name.charAt(0)+''.toUpperCase()}"></button>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li><a class="dropdown-item" th:href="@{/account}" th:text="${user.name}"></a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li><form th:action="@{/account/logout}" method="post"><button class="btn dropdown-item" type="submit">Logout</button></form></li>
+					</ul>
 				</div>
 			</div>
 			<div style="display:flex; padding: 20px;">
-				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account}"><button class="btn"
-							style="border: 1px solid gray;border-radius: 20px;">Account</button></a></div>
-				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/organization}"><button
-							class="btn" style="border: 1px solid gray;border-radius: 20px;">Organizations</button></a>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account}"><button
+							class="btn" style="border: 1px solid gray;border-radius: 20px;">Account</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;cursor: not-allowed;"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><button
+							class="btn" style="border: 1px solid gray;border-radius: 20px;background-color: rgba(0,0,0,0.1);">Organizations</button></a>
 				</div>
-				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/notification}"><button
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account/jobs}"><button
+							class="btn" style="border: 1px solid gray;border-radius: 20px;">Jobs</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account/notification}"><button
 							class="btn" style="border: 1px solid gray;border-radius: 20px;">Notifications</button></a>
 				</div>
-				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/contact}"><button
-							class="btn" style="border: 1px solid gray;border-radius: 20px;">Contacts</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account/appliedjob}"><button
+							class="btn" style="border: 1px solid gray;border-radius: 20px;">Applied Jobs</button></a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -65,17 +75,72 @@
 					</div>
 				</div>
 				<div>
-					<button type="button" class="btn btn-primary position-relative">
-						Posted Jobs
-						<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-							th:text="${organization.jobs.size()}">
+					<a th:href="'/account/organizationjobs/'+${organization.id}">
+						<button type="button" class="btn btn-primary position-relative">
+							Posted Jobs
+							<span
+								class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+								th:text="${organization.jobs.size()}">
 
-							<span class="visually-hidden">unread messages</span>
-						</span>
-					</button>
-					<button class="btn" style="display: block;background-color: #42CFF8;margin-top: 10px;width: 110px;color: white;">
+								<span class="visually-hidden">unread messages</span>
+							</span>
+						</button>
+					</a>
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Make Changes</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form th:action="@{/account/updateorganization}" method="post" enctype="multipart/form-data">
+										<input type="hidden" name="orgId" th:value="${organization.id}" />
+										<div class="form-floating mb-3">
+											<input type="text" class="form-control" id="passwordInp1" th:value="${organization.name}"
+												placeholder="name@example.com" name="name"
+												style="border: none;border-bottom: 1px solid gray;border-radius: 0%;outline: none;">
+											<label for="floatingInput">Organization Name</label>
+										</div>
+										<div class="form-floating mb-3">
+											<input type="text" class="form-control" id="passwordInp1" th:value="${organization.url}"
+												placeholder="name@example.com" name="url"
+												style="border: none;border-bottom: 1px solid gray;border-radius: 0%;outline: none;">
+											<label for="floatingInput">Organization Url</label>
+										</div>
+										<div class="logoDiv">
+											<div class="subDiv1">
+												<label for="">Logo</label>
+											</div>
+											<div class="subDiv2">
+												<input type="file" name="logo" class="form-control"/>
+												<p>Optional — Your organization’s logo will appear at the top of your
+													post.</p>
+											</div>
+										</div>
+										<div class="container text-center">
+											<button type="submit" class="btn btn-warning" style="width: 100px;">Save</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
+						style="display: block;background-color: #42CFF8;margin-top: 10px;width: 110px;color: white;">
 						Edit
 					</button>
+					<a th:href="'/account/deleteorg/'+${organization.id}">
+						<button class="btn"
+							style="display: block;background-color: #F86742 ;margin-top: 10px;width: 110px;color: white;margin-bottom: 20px;">
+							Delete
+						</button>
+					</a>
 				</div>
 			</div>
 		</div>

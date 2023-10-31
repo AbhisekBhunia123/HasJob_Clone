@@ -13,7 +13,7 @@
 
 <body>
 	<div class="container text-center">
-			<h1 style="font-size: 20px; font-weight: bold;font-family: Arial, Helvetica, sans-serif;color: #19B5DC;margin-top: 300px;">You changed your primary email so for double check we redirect you to login page .. </h1>
+			<h1 style="font-size: 20px; font-weight: bold;font-family: Arial, Helvetica, sans-serif;color: #19B5DC;margin-top: 300px;" th:text="${msg}"></h1>
 	</div>
 
 	<form th:action="@{/account/logout}" method="post" id="myForm">

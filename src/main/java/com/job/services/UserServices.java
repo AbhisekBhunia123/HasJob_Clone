@@ -16,6 +16,9 @@ public class UserServices {
 	@Autowired
 	UserRepo userRepo;
 	
+	public List<User> findAllUser(){
+		return userRepo.findAll();
+	}
 	public static String generateOTP() {
         Random random = new Random();
         int otp = 100000 + random.nextInt(900000);

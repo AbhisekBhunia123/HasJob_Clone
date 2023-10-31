@@ -38,32 +38,50 @@
 		style="width: 100%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);position:fixed;z-index: 1;background-color: white;">
 		<div class="container" style="width:60%">
 			<div style="display:grid;grid-template-columns: 20% 40% 50%; padding: 10px;">
-				<div>Logo</div>
+				<div ><a th:href="@{/}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpTFaf18osJm4jz-Bc-o_niu3N1peQoXLon2X9UUQYQZPcFqg79_jY_RReX8jBjkzMxac&usqp=CAU" style="width:50px;height: 50px;" /></a></div>
 				<div><input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
 						style="border-radius: 20px;"></div>
 				<div style="display: flex;justify-content: center;align-items: center;"><button class="btn"
-						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;margin-right: 10px;display: flex;justify-content: center;align-items: center;"><i class="fa fa-bell-o" aria-hidden="true" style="margin:0;padding:0;font-size: 20px;"></i></button>
+						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;margin-right: 10px;display: flex;justify-content: center;align-items: center;"><i
+							class="fa fa-bell-o" aria-hidden="true"
+							style="margin:0;padding:0;font-size: 20px;"></i></button>
 					<button class="btn"
-						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;margin-right: 10px;display: flex;justify-content: center;align-items: center;"><i class="fa fa-comment-o" aria-hidden="true" style="margin:0;padding: 0;font-size: 20px;"></i></button>
-					<button class="btn"
-						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;background-color: #B6EF07;color: white;" th:text="${user.name.charAt(0)+''.toUpperCase()}"></button>
+						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;margin-right: 10px;display: flex;justify-content: center;align-items: center;"><i
+							class="fa fa-comment-o" aria-hidden="true"
+							style="margin:0;padding: 0;font-size: 20px;"></i></button>
+					<button class="btn " data-bs-toggle="dropdown" aria-expanded="false" role="button"
+						style="width:40px;height:40px;border: 1px solid gray;border-radius: 50%;background-color: #B6EF07;color: white;"
+						th:text="${user.name.charAt(0)+''.toUpperCase()}"></button>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li><a class="dropdown-item" th:href="@{/account}" th:text="${user.name}"></a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li><form th:action="@{/account/logout}" method="post"><button class="btn dropdown-item" type="submit">Logout</button></form></li>
+					</ul>
+
 				</div>
 			</div>
 			<div style="display:flex; padding: 20px;">
-				<div style="display: flex;margin-right: 10px;align-items: center;"><a href="#"><button class="btn"
-						style="border: 1px solid gray;border-radius: 20px;">Account</button></a></div>
-				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/organization}"><button class="btn"
-						style="border: 1px solid gray;border-radius: 20px;">Organizations</button></a></div>
-				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/notification}"><button class="btn"
-						style="border: 1px solid gray;border-radius: 20px;">Notifications</button></a></div>
-				<div style="display: flex;margin-right: 10px;align-items: center;"><a  th:href="@{/contact}"><button class="btn"
-						style="border: 1px solid gray;border-radius: 20px;">Contacts</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;cursor: not-allowed;"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"><button class="btn"
+							style="border: 1px solid gray;border-radius: 20px;background-color: rgba(0,0,0,0.1);">Account</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account/organization}"><button
+							class="btn" style="border: 1px solid gray;border-radius: 20px;">Organizations</button></a>
+				</div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account/jobs}"><button
+							class="btn" style="border: 1px solid gray;border-radius: 20px;">Jobs</button></a></div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account/notification}"><button
+							class="btn" style="border: 1px solid gray;border-radius: 20px;">Notifications</button></a>
+				</div>
+				<div style="display: flex;margin-right: 10px;align-items: center;"><a th:href="@{/account/appliedjob}"><button
+							class="btn" style="border: 1px solid gray;border-radius: 20px;">Applied Jobs</button></a>
+				</div>
 			</div>
 		</div>
 	</div>
 
 
-	<div class="container" style="position: absolute;width: 60%;top:160px;margin-left: 20%;z-index: -1">
+	<div class="container" style="position: absolute;width: 60%;top:180px;margin-left: 20%;z-index: -1">
 		<div class="accountImageDiv" style="display: grid;grid-template-columns: 110px 70%">
 			<div>
 				<div style="width: 100px;height: 100px; border-radius: 50%;background-color: #B6EF07;color: white;display: flex;justify-content: center;align-items: center;font-size: 30px;"
@@ -71,7 +89,7 @@
 			</div>
 			<div>
 				<p th:text="${user.name}"></p>
-				<a th:href="@{/showupdate}" style="text-decoration: none;">
+				<a th:href="@{/account/showupdate}" style="text-decoration: none;">
 					<p>Add username +</p>
 				</a>
 				<a th:href="@{/account}" style="text-decoration: none;">
@@ -97,9 +115,9 @@
 							device</small></p>
 				</div>
 				<div class="card-footer">
-					<a th:href="@{/showupdate}"><button class="btn infoBtn"
+					<a th:href="@{/account/showupdate}"><button class="btn infoBtn"
 							style="font-size: 15px;color:#19B3DC">EDIT</button></a>
-					<a th:href="@{/showSetPassword}"><button class="btn infoBtn"
+					<a th:href="@{/account/showSetPassword}"><button class="btn infoBtn"
 							style="font-size: 15px;color:#DC5519">SET PASSWORD</button></a>
 					<form th:action="@{/account/logout}" method="post" style="display: inline;">
 						<button class="btn infoBtn" style="font-size: 15px;color:#DC5519">LOGOUT</button>
@@ -126,19 +144,21 @@
 					Email addresses
 				</div>
 				<div class="card-body">
-					<form th:action="@{/setasprimary}" method="post" style="display: inline;">
+					<form th:action="@{/account/setasprimary}" method="post" style="display: inline;">
 						<input type="hidden" name="userId" th:value="${user.id}" />
 						<div th:each="email, emailStat : ${user.emails}">
 							<span style="margin-right: 5px;" th:text="${emailStat.index + 1 + '.'}"></span><input
 								type="radio" class="form-check-input" style="margin-right: 5px;"
 								th:checked="${email.equals(user.primaryEmail)}" th:value="${email}"
-								name="primeryEmail" /><span th:text="${email}"><img src="/images/tick.png" /></span><span th:if="${email.equals(user.primaryEmail)}"><img src="/images/tick.png" /></span>
+								name="primeryEmail" /><span th:text="${email}"><img
+									src="/images/tick.png" /></span><span
+								th:if="${email.equals(user.primaryEmail)}"><img src="/images/tick.png" /></span>
 						</div>
 
 						<hr>
 						<button class="btn infoBtn" style="font-size: 15px;color:#19B3DC">SET AS PRIMARY</button>
 					</form>
-					<a th:href="@{/showaddemailpage}"><button class="btn infoBtn"
+					<a th:href="@{/account/showaddemailpage}"><button class="btn infoBtn"
 							style="font-size: 15px;color:#DC5519">ADD AN EMAIL ADDRESS</button></a>
 				</div>
 			</div>
@@ -186,7 +206,7 @@
 				<p>If you no longer need this account, you can delete it. If you have a duplicate account, you can merge
 					it by adding the same phone number or email address here. No deletion necessary.</p>
 				<hr>
-				<form th:action="@{/delete}" method="post">
+				<form th:action="@{/account/delete}" method="post">
 					<input type="hidden" name="id" th:value="${user.id}" />
 					<button class="btn infoBtn" style="font-size: 15px;color:#DC5519">DELETE THIS ACCOUNT</button>
 				</form>

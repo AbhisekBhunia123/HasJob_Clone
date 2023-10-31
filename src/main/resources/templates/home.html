@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta charset="UTF-8">
@@ -58,13 +58,14 @@
 		.card {
 			margin-bottom: 20px;
 		}
-		
-		.jobsAnchor{
+
+		.jobsAnchor {
 			text-decoration: none;
-			color:black;
+			color: black;
 		}
-		.jobsAnchor:hover{
-			color:black;
+
+		.jobsAnchor:hover {
+			color: black;
 		}
 	</style>
 
@@ -82,20 +83,37 @@
 			<div class="container-fluid navbarDiv">
 				<div class="container navHeadingDiv">
 					<div class="navHeading">
-						<img src="" /><span>The Hasgeek Job Board</span>
+						<a th:href="@{/}"><img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpTFaf18osJm4jz-Bc-o_niu3N1peQoXLon2X9UUQYQZPcFqg79_jY_RReX8jBjkzMxac&usqp=CAU"
+								style="width:50px;height: 50px;border-radius: 50%;" /></a><span
+							style="font-size: 30px;font-weight: bold;margin-left: 5px;">HasJob</span><span
+							style="font-size: 20px;font-weight: bold;font-family: Arial, Helvetica, sans-serif;margin-left: 5px;">The
+							Hasgeek Job Board</span>
 					</div>
 					<div class="navPost">
-						<a th:href="@{/new}">
+						<a th:href="@{/account/new}">
 							<button class="btn btn-small"
 								style="border: 1px solid gray;height:30px;padding:5px;background-color:purple;color: white;">Post
 								a Job</button>
 						</a>
-						<a th:href="@{/loginpage}">
+						<a th:href="@{/loginpage}" sec:authorize="!isAuthenticated()">
 							<button class="btn btn-small"
-							style="border: 1px solid gray;height:30px;padding:5px;background-color:green;color: white;">Login</button>
+								style="border: 1px solid gray;height:30px;padding:5px;background-color:green;color: white;">Login</button>
 						</a>
-						
-						<span><i class="fa fa-th" aria-hidden="true" style="font-size: 20px;color: black;"></i></span>
+
+						<button class="btn " data-bs-toggle="dropdown" aria-expanded="false" role="button" sec:authorize="isAuthenticated()"
+							style="width:40px;height:40px;"><i
+								class="fa fa-user" aria-hidden="true"></i></button>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown" sec:authorize="isAuthenticated()">
+							<li><a class="dropdown-item" th:href="@{/account}" th:text="${#authentication.name}"></a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li>
+								<form th:action="@{/account/logout}" method="post"><button class="btn dropdown-item"
+										type="submit">Logout</button></form>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<form th:action="@{/multifilter}" method="post" id="filterForm">
@@ -346,7 +364,8 @@
 							</ul>
 						</div>
 						<div class="searchBtn">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name = "searchText" th:value="${filterSearchText != null ? filterSearchText : ''}"
+							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+								name="searchText" th:value="${filterSearchText != null ? filterSearchText : ''}"
 								id="filterSearch">
 						</div>
 					</div>
@@ -374,72 +393,80 @@
 					<div class="col-md-3" th:if="${organizations != null}"
 						th:each="organization, iterStat: ${organizations}">
 						<!-- Add a card for each organization -->
-						<a th:href="@{'/'+${organization.email}+'/'+ ${organization.getJobs().get(0).id}}"
+						<a th:href="@{'/job/'+ ${organization.getJobs().get(0).id}}"
 							th:if="${organization.getJobs().size() == 1}" class="jobsAnchor">
 							<div class="card mb-3" style="width: 18rem;background-color: #ebcf34;">
 								<div class="card-body">
 									<div style="display: grid;grid-template-columns: 30% 70%;">
 										<div style="overflow: hidden;">
-											<span class="card-title" th:text="${organization.getJobs().get(0).location}"></span>
+											<span class="card-title"
+												th:text="${organization.getJobs().get(0).location}"></span>
 										</div>
 										<div style="overflow: hidden;">
-											<span th:text="'| Opened at- ' + ${#dates.format(organization.getJobs().get(0).openedAt, 'yyyy-MM-dd')}"></span>
+											<span
+												th:text="'| Opened at- ' + ${#dates.format(organization.getJobs().get(0).openedAt, 'yyyy-MM-dd')}"></span>
 										</div>
 									</div>
 									<p class="card-text" th:text="${organization.getJobs().get(0).headline}"></p>
 									<div style="float: right;">
 										<p th:text="${organization.name}"></p>
 									</div>
-									
+
 								</div>
 							</div>
 						</a>
 
-						<a th:href="@{'/'+${organization.email}+'/'+ ${organization.getJobs().get(0).id}}"
+						<a th:href="@{'/job/'+ ${organization.getJobs().get(0).id}}"
 							th:if="${organization.getJobs().size() > 1}" class="jobsAnchor">
-						<div>
-							<div style="width: 18rem;position: absolute">
-								<div class="card" style="position: relative;right:10px;top:-10px;background-color: #ebcf34;">
+							<div>
+								<div style="width: 18rem;position: absolute">
+									<div class="card"
+										style="position: relative;right:10px;top:-10px;background-color: #ebcf34;">
+										<div class="card-body">
+											<div style="display: grid;grid-template-columns: 30% 70%;">
+												<div style="overflow: hidden;">
+													<span class="card-title"
+														th:text="${organization.getJobs().get(0).location}"></span>
+												</div>
+												<div style="overflow: hidden;">
+													<span
+														th:text="'| Opened at- ' + ${#dates.format(organization.getJobs().get(0).openedAt, 'yyyy-MM-dd')}"></span>
+												</div>
+											</div>
+											<p class="card-text" th:text="${organization.getJobs().get(0).headline}">
+											</p>
+											<div style="float: right;">
+												<p th:text="${organization.name}"></p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card" style="width: 18rem;background-color: #ebcf34;">
 									<div class="card-body">
 										<div style="display: grid;grid-template-columns: 30% 70%;">
-										<div style="overflow: hidden;">
-											<span class="card-title" th:text="${organization.getJobs().get(0).location}"></span>
+											<div style="overflow: hidden;">
+												<span class="card-title"
+													th:text="${organization.getJobs().get(0).location}"></span>
+											</div>
+											<div style="overflow: hidden;">
+												<span
+													th:text="'| Opened at- ' + ${#dates.format(organization.getJobs().get(0).openedAt, 'yyyy-MM-dd')}"></span>
+											</div>
 										</div>
-										<div style="overflow: hidden;">
-											<span th:text="'| Opened at- ' + ${#dates.format(organization.getJobs().get(0).openedAt, 'yyyy-MM-dd')}"></span>
+										<p class="card-text" th:text="${organization.getJobs().get(0).headline}"></p>
+										<div style="float: right;">
+											<p th:text="${organization.name}"></p>
 										</div>
-									</div>
-									<p class="card-text" th:text="${organization.getJobs().get(0).headline}"></p>
-									<div style="float: right;">
-										<p th:text="${organization.name}"></p>
-									</div>
 									</div>
 								</div>
 							</div>
-							<div class="card" style="width: 18rem;background-color: #ebcf34;">
-								<div class="card-body">
-									<div style="display: grid;grid-template-columns: 30% 70%;">
-										<div style="overflow: hidden;">
-											<span class="card-title" th:text="${organization.getJobs().get(0).location}"></span>
-										</div>
-										<div style="overflow: hidden;">
-											<span th:text="'| Opened at- ' + ${#dates.format(organization.getJobs().get(0).openedAt, 'yyyy-MM-dd')}"></span>
-										</div>
-									</div>
-									<p class="card-text" th:text="${organization.getJobs().get(0).headline}"></p>
-									<div style="float: right;">
-										<p th:text="${organization.name}"></p>
-									</div>
-								</div>
-							</div>
-						</div>
 						</a>
 						<!-- Check if the current iteration is a multiple of 4 to start a new row -->
 						<div th:if="${iterStat.count % 4 == 0}" class="w-100"></div>
 					</div>
 					<div class="col-md-3" th:if="${filterJobs != null}" th:each="job, iterStat: ${filterJobs}">
 						<!-- Add a card for each organization -->
-						<a th:href="@{'/'+${job.getOrganization().email}+'/'+ ${job.id}}" class="jobsAnchor">
+						<a th:href="@{'/job/'+ ${job.id}}" class="jobsAnchor">
 							<div class="card mb-3" style="width: 18rem;background-color: #ebcf34;">
 								<div class="card-body">
 									<div style="display: grid;grid-template-columns: 30% 70%;">
@@ -447,7 +474,8 @@
 											<span class="card-title" th:text="${job.location}"></span>
 										</div>
 										<div style="overflow: hidden;">
-											<span th:text="'| Opened at- ' + ${#dates.format(job.openedAt, 'yyyy-MM-dd')}"></span>
+											<span
+												th:text="'| Opened at- ' + ${#dates.format(job.openedAt, 'yyyy-MM-dd')}"></span>
 										</div>
 									</div>
 									<p class="card-text" th:text="${job.headline}"></p>

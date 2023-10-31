@@ -34,7 +34,7 @@ public class PostController {
 	@Autowired
 	EmailService emailService;
 	
-	@PostMapping("/postjob")
+	@PostMapping("/account/postjob")
 	public String postJob(@RequestParam("headline") String headline,
 			@RequestParam("headlineB") String headlineB,
 			@RequestParam("type") String type,
@@ -61,7 +61,7 @@ public class PostController {
 		if(isPublished) {
 			return "redirect:/";
 		}
-		return "redirect:/new";
+		return "redirect:/account/new";
 //		String formData = "<form  method='post' th:action='http://localhost:8080/postjob}' enctype='multipart/form-data'>"
 //				+ "    <input type='hidden' name='headline' th:value='${'"+headline+"'}' />"
 //				+ "    <input type='hidden' name='headlineB' th:value='${'"+headlineB+"'}' />"
@@ -86,15 +86,15 @@ public class PostController {
 //		return "laststep";
 	}
 	
-	@PostMapping("/updatejob")
+	@PostMapping("/account/updatejob")
 	public String updateJob(@RequestParam("jobId") int jobId,Model model) {
 		Job  job = jobPostServices.getJobById(jobId);
 		model.addAttribute("job",job);
 		return "postjob";
 	}
 	
-	@GetMapping("/{orgEmail}/{jobId}")
-	public String shodIndivisualJob(@PathVariable("orgEmail") String orgEmail,@PathVariable("jobId") int jobId,Model model) {
+	@GetMapping("/job/{jobId}")
+	public String shodIndivisualJob(@PathVariable("jobId") int jobId,Model model) {
 		Job job = jobPostServices.getJobById(jobId);
 		List<Job> jobs = jobPostServices.getJobsInLocation(job.getLocation());
 		Set<String> locations = jobPostServices.getAllLocations();
@@ -108,7 +108,7 @@ public class PostController {
 		return "jobpage"; 
 	}
 	
-	@PostMapping("/apply")
+	@PostMapping("/account/apply")
 	public String applyForJob(@RequestParam("empName") String applicantName,
 			@RequestParam("empEmail") String applicantEmail,
 			@RequestParam("empPhone") String applicantPhone,

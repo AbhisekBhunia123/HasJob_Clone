@@ -43,7 +43,7 @@ public class ViewController {
 		return "home";
 	}
 	
-	@GetMapping("/new")
+	@GetMapping("/account/new")
 	public String showPostJob(Model model) {
 		Set<String> locations = jobPostServices.getAllLocations();
 		model.addAttribute("locations",locations);
@@ -90,6 +90,11 @@ public class ViewController {
 		model.addAttribute("filterSearchText",searchText);
 		System.out.println(jobs);
 		return "home";
+	}
+	
+	@GetMapping("/access-denied")
+	public String errorPage() {
+		return "error";
 	}
 	
 

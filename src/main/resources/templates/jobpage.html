@@ -57,13 +57,14 @@
 		.card {
 			margin-bottom: 20px;
 		}
-		
-		.jobsAnchor{
+
+		.jobsAnchor {
 			text-decoration: none;
-			color:black;
+			color: black;
 		}
-		.jobsAnchor:hover{
-			color:black;
+
+		.jobsAnchor:hover {
+			color: black;
 		}
 	</style>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -79,17 +80,36 @@
 			<div class="container-fluid navbarDiv">
 				<div class="container navHeadingDiv">
 					<div class="navHeading">
-						<img src="" /><span>The Hasgeek Job Board</span>
+						<a th:href="@{/}"><img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpTFaf18osJm4jz-Bc-o_niu3N1peQoXLon2X9UUQYQZPcFqg79_jY_RReX8jBjkzMxac&usqp=CAU"
+								style="width:50px;height: 50px;border-radius: 50%;" /></a><span
+							style="font-size: 30px;font-weight: bold;margin-left: 5px;">HasJob</span><span
+							style="font-size: 20px;font-weight: bold;font-family: Arial, Helvetica, sans-serif;margin-left: 5px;">The
+							Hasgeek Job Board</span>
 					</div>
 					<div class="navPost">
-						<a th:href="@{/new}">
+						<a th:href="@{/account/new}">
 							<button class="btn btn-small"
 								style="border: 1px solid gray;height:30px;padding:5px;background-color:purple;color: white;">Post
 								a Job</button>
 						</a>
-						<button class="btn btn-small"
-							style="border: 1px solid gray;height:30px;padding:5px;background-color:green;color: white;">Login</button>
-						<span><i class="fa fa-th" aria-hidden="true" style="font-size: 20px;color: black;"></i></span>
+						<a th:href="@{/loginpage}" sec:authorize="!isAuthenticated()">
+							<button class="btn btn-small"
+								style="border: 1px solid gray;height:30px;padding:5px;background-color:green;color: white;">Login</button>
+						</a>
+						<button class="btn " data-bs-toggle="dropdown" aria-expanded="false" role="button" sec:authorize="isAuthenticated()"
+							style="width:40px;height:40px;"><i
+								class="fa fa-user" aria-hidden="true"></i></button>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown" sec:authorize="isAuthenticated()">
+							<li><a class="dropdown-item" th:href="@{/account}" th:text="${#authentication.name}"></a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li>
+								<form th:action="@{/account/logout}" method="post"><button class="btn dropdown-item"
+										type="submit">Logout</button></form>
+							</li>
+						</ul>
 					</div>
 				</div>
 				<form th:action="@{/multifilter}" method="post" id="filterForm">
@@ -350,7 +370,7 @@
 		</div>
 
 	</div>
-	<div style=" position: absolute;top: 140px;z-index: -1;width: 100%; ">
+	<div style=" position: absolute;top: 170px;z-index: -1;width: 100%; ">
 		<div class="container"
 			style="width: 50%;margin-left: 25%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-bottom: 20px;background-color: white;">
 			<div class="container-fluid">
@@ -358,9 +378,18 @@
 					<div class="headingDiv"
 						style="border-bottom: 1px solid gray;display: grid;grid-template-columns: 80% 20%;">
 						<div>
-							<p style="font-size: 30px;color: #e04f36;font-weight: bold;"><span th:text="${job.type}"></span> at <span th:text="${job.organization.name}"></span></p>
-							<small style="margin-top: 0;">Posted <span th:text="${#dates.format(job.openedAt, 'yyyy-MM-dd')}"></span> by HR@<span th:text="${job.organization.name}"></span></small>
-							<p><strong><a style="text-decoration: none;" href="#" th:text="${job.organization.name}"></a></strong> , <a style="text-decoration: none;" href="#" th:text="${job.location}"></a> · <a style="text-decoration: none;" href="#" th:text="${job.organization.url}"></a> · <a style="text-decoration: none;" href="#" th:text="${job.type}"></a> · <a style="text-decoration: none;" href="#" th:text="${job.category}"></a></p>
+							<p style="font-size: 30px;color: #e04f36;font-weight: bold;"><span
+									th:text="${job.type}"></span> at <span th:text="${job.organization.name}"></span>
+							</p>
+							<small style="margin-top: 0;">Posted <span
+									th:text="${#dates.format(job.openedAt, 'yyyy-MM-dd')}"></span> by HR@<span
+									th:text="${job.organization.name}"></span></small>
+							<p><strong><a style="text-decoration: none;" href="#"
+										th:text="${job.organization.name}"></a></strong> , <a
+									style="text-decoration: none;" href="#" th:text="${job.location}"></a> · <a
+									style="text-decoration: none;" href="#" th:text="${job.organization.url}"></a> · <a
+									style="text-decoration: none;" href="#" th:text="${job.type}"></a> · <a
+									style="text-decoration: none;" href="#" th:text="${job.category}"></a></p>
 						</div>
 						<div>
 							<div th:if="${base64Image != null}" style="padding: 5px;">
@@ -371,8 +400,9 @@
 					</div>
 					<div style="border-bottom: 1px solid gray;">
 						<div class="aboutEmpany" style="margin-top: 10px;">
-							<p ><span th:text="${job.organization.name}"></span>- Pioneering the Future with AI</p>
-							<p>At <span th:text="${job.organization.name}"></span>, we’re not just building products; we’re reimagining the fabric of
+							<p><span th:text="${job.organization.name}"></span>- Pioneering the Future with AI</p>
+							<p>At <span th:text="${job.organization.name}"></span>, we’re not just building products;
+								we’re reimagining the fabric of
 								industries.
 								Situated at the nexus of enterprise productivity, healthcare, and logistics, we harness
 								the
@@ -382,7 +412,8 @@
 								landscape. If you’re seeking a challenge that’s both exhilarating and meaningful,
 								<span th:text="${job.organization.name}"></span>
 								is
-								where your expertise can truly make a difference. Let’s innovate together</p>
+								where your expertise can truly make a difference. Let’s innovate together
+							</p>
 							<p>Job Description:</p>
 							<p th:text="${job.description}"></p>
 							<p>Responsibilities:</p>
@@ -418,10 +449,11 @@
 						<div class="container text-center" sec:authorize="!isAuthenticated()" style="padding: 30px;">
 							<a th:href="@{/loginpage}"><button class="btn btn-primary" styl>Login For Apply</button></a>
 						</div>
-						
-						<form th:action="@{/apply}" method="post" sec:authorize="isAuthenticated()">
+
+						<form th:action="@{/account/apply}" method="post" sec:authorize="isAuthenticated()">
 							<input type="hidden" name="jobId" th:value="${job.id}" />
-							<p style="font-size: 25px;margin-top: 10px;color: #7281a6;font-weight: bold;">Apply for this position</p>
+							<p style="font-size: 25px;margin-top: 10px;color: #7281a6;font-weight: bold;">Apply for this
+								position</p>
 							<small>Linkedin and GitHut profiles</small>
 							<div class="appliNameDiv"
 								style="display: grid;grid-template-columns: 20% 80%;margin-top: 10px;">
@@ -440,8 +472,8 @@
 								</div>
 								<div>
 									<input type="radio" name="empEmail" class="form-check-input"
-										style="margin-right: 5px;"
-										th:value="${#authentication.name}" /><span th:text="${#authentication.name}"></span>
+										style="margin-right: 5px;" th:value="${#authentication.name}" /><span
+										th:text="${#authentication.name}"></span>
 									<p>Add new email addresses from your profile</p>
 								</div>
 							</div>
@@ -489,8 +521,9 @@
 									simultaneously and your status with them, but not which jobs you are applying to.
 								</p>
 							</div>
-							<div >
-								<p style="padding: 10px;">It is NOT OK for recruiters, HR consultants, and other intermediaries to contact this
+							<div>
+								<p style="padding: 10px;">It is NOT OK for recruiters, HR consultants, and other
+									intermediaries to contact this
 									employer
 								</p>
 							</div>
@@ -504,7 +537,7 @@
 				<div class="row">
 					<div class="col-md-3" th:each="jobInList, iterStat: ${jobs}">
 						<!-- Add a card for each organization -->
-						<a th:href="@{'/'+${jobInList.getOrganization.email}+'/'+ ${jobInList.id}}" class="jobsAnchor">
+						<a th:href="@{'/job/'+ ${jobInList.id}}" class="jobsAnchor">
 							<div class="card mb-3" style="width: 18rem;background-color: #ebcf34;">
 								<div class="card-body">
 									<div style="display: grid;grid-template-columns: 30% 70%;">
@@ -512,7 +545,8 @@
 											<span class="card-title" th:text="${jobInList.location}"></span>
 										</div>
 										<div style="overflow: hidden;">
-											<span th:text="'| Opened at- ' + ${#dates.format(jobInList.openedAt, 'yyyy-MM-dd')}"></span>
+											<span
+												th:text="'| Opened at- ' + ${#dates.format(jobInList.openedAt, 'yyyy-MM-dd')}"></span>
 										</div>
 									</div>
 									<p class="card-text" th:text="${jobInList.headline}"></p>

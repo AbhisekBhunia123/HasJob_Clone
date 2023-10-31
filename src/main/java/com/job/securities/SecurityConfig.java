@@ -35,12 +35,12 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChani(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authorizeRequests -> authorizeRequests.requestMatchers("/account/**").authenticated()
 				.anyRequest().permitAll())
-				.formLogin(
-						form -> form.loginPage("/loginpage").loginProcessingUrl("/authenticateTheUser").permitAll())
+				.formLogin(form -> form.loginPage("/loginpage").loginProcessingUrl("/authenticateTheUser").permitAll())
 				.logout(logout ->
 
-				logout.permitAll().logoutUrl("/account/logout").invalidateHttpSession(true));
-
+				logout.permitAll().logoutUrl("/account/logout").invalidateHttpSession(true))
+				.exceptionHandling(exceptionHandling -> exceptionHandling.accessDeniedPage("/access-denied") 
+				);
 		return http.build();
 	}
 
