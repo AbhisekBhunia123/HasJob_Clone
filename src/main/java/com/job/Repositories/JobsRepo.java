@@ -24,12 +24,12 @@ public interface JobsRepo extends JpaRepository<Job, Integer> {
 		       + "AND (:location is null OR j.location IN :location)"
 		       + "AND (:payType is null OR j.payType IN :payType)"
 		       + "AND (:payRange is null OR j.payRange <= :payRange ))"
-		       +" AND ((:searchText is null OR (j.location LIKE CONCAT('%', :searchText, '%')"
-		       + "OR j.type LIKE CONCAT('%', :searchText, '%')"
-		       + "OR j.headline LIKE CONCAT('%', :searchText, '%')"
-		       + "OR j.description LIKE CONCAT('%', :searchText, '%')"
-		       + "OR o.name LIKE CONCAT('%', :searchText, '%')"
-		       + "OR j.category LIKE CONCAT('%', :searchText, '%'))))")
+		       +" AND ((:searchText is null OR (LOWER(j.location) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(j.type) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(j.headline) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(j.description) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(o.name) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(j.category) LIKE CONCAT('%', LOWER(:searchText), '%'))))")
 		List<Job> filterJob(@Param("type") String[] type,
 		                               @Param("category") String[] category,
 		                               @Param("location") String[] location,
@@ -44,12 +44,12 @@ public interface JobsRepo extends JpaRepository<Job, Integer> {
 		       "AND (:category is null OR j.category IN :category)"
 		       + "AND (:location is null OR j.location IN :location)"
 		       + "AND (:payType is null OR j.payType IN :payType))"
-		       +" AND ((:searchText is null OR (j.location LIKE CONCAT('%', :searchText, '%')"
-		       + "OR j.type LIKE CONCAT('%', :searchText, '%')"
-		       + "OR j.headline LIKE CONCAT('%', :searchText, '%')"
-		       + "OR j.description LIKE CONCAT('%', :searchText, '%')"
-		       + "OR o.name LIKE CONCAT('%', :searchText, '%')"
-		       + "OR j.category LIKE CONCAT('%', :searchText, '%'))))")
+		       +" AND ((:searchText is null OR (LOWER(j.location) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(j.type) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(j.headline) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(j.description) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(o.name) LIKE CONCAT('%', LOWER(:searchText), '%')"
+		       + "OR LOWER(j.category) LIKE CONCAT('%', LOWER(:searchText), '%'))))")
 	List<Job> filterJobWithOutPay(@Param("type") String[] type,
             @Param("category") String[] category,
             @Param("location") String[] location,

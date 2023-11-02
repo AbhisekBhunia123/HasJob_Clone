@@ -416,8 +416,12 @@
 							</div>
 						</a>
 
-						<a th:href="@{'/job/'+ ${organization.getJobs().get(0).id}}"
+						<form th:action="@{/multifilter}" id="orgForm" method="post"
 							th:if="${organization.getJobs().size() > 1}" class="jobsAnchor">
+							<input type="hidden" name="searchText" th:value="${organization.name}" />
+							<input type="hidden" class="form-range" id="filterRange"
+											th:value="${filterPayRange == null ? 0 : filterPayRange}" min="0"
+											max="1000000" name="payRange">
 							<div>
 								<div style="width: 18rem;position: absolute">
 									<div class="card"
@@ -460,7 +464,7 @@
 									</div>
 								</div>
 							</div>
-						</a>
+						</form>
 						<!-- Check if the current iteration is a multiple of 4 to start a new row -->
 						<div th:if="${iterStat.count % 4 == 0}" class="w-100"></div>
 					</div>
@@ -504,6 +508,7 @@
 		let filterRangeInput = document.getElementById("filterRange");
 		let filterRangeButton = document.getElementById("filterRangeButton");
 		let filterSearchInput = document.getElementById("filterSearch");
+		let orgForm = document.getElementById("orgForm");
 		let timer;
 		for (let i = 0; i < filterInputs.length; i++) {
 			filterInputs[i].addEventListener('click', () => {
@@ -537,6 +542,10 @@
 			}, 700);
 		})
 
+orgForm.addEventListener('click',()=>{
+	let filterForm = document.getElementById("orgForm");
+	filterForm.submit();
+})
 
 	</script>
 </body>

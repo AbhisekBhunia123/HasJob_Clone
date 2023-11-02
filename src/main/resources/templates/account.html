@@ -132,8 +132,8 @@
 					<hr>
 					<div style="display: flex;justify-content: space-evenly;">
 						<a href="#"><img th:src="@{/images/google.png}" style="border-radius: 50%;" /></a>
-						<a><img src="/images/github.png" style="border-radius: 50%;" /></a>
-						<a><img src="/images/linkedin.png" style="width: 40px;height: 40px; border-radius: 50%;" /></a>
+						<a th:href="@{https://github.com/hasgeek/hasjob}"><img src="/images/github.png" style="border-radius: 50%;" /></a>
+						<a th:href="@{https://www.linkedin.com/in/abhisek-bhunia-a482a3238/}"><img src="/images/linkedin.png" style="width: 40px;height: 40px; border-radius: 50%;" /></a>
 					</div>
 				</div>
 			</div>
@@ -177,10 +177,10 @@
 				Connected apps
 			</div>
 			<div class="card-body">
-				<span><a href="#">Hasjob</a><img src="../images/checked.png" /> -Hasgeek job board</span>
+				<span><a href="/">Hasjob</a><img src="../images/checked.png" /> -Hasgeek job board</span>
 				<p>Since 24 Oct 2023-last used 2 hour ago</p>
 				<hr>
-				<span><a href="#">Imgee</a><img src="/images/checked.png" /> -Hasgeek image manager</span>
+				<span><a th:href="@{https://images.hasgeek.com/}">Imgee</a><img src="/images/checked.png" /> -Hasgeek image manager</span>
 				<p>Since 24 Oct 2023-last used 2 hour ago</p>
 			</div>
 		</div>

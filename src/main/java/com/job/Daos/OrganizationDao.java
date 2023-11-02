@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.job.Repositories.JobsRepo;
 import com.job.Repositories.OrganizationRepo;
 import com.job.entities.Organization;
 import com.job.entities.User;
@@ -18,6 +19,9 @@ import com.job.entities.User;
 public class OrganizationDao {
 	@Autowired
 	OrganizationRepo organizationRepo;
+	
+	@Autowired
+	JobsRepo jobsRepo;
 	
 	public boolean createOrganization(String name,String url,String email,String collaborators,MultipartFile logo,User user) {
 		boolean isCreated = false;
@@ -48,7 +52,7 @@ public class OrganizationDao {
 	
 	public String getImageAsBase64(int id) {
 		try {
-			byte[] imageData = organizationRepo.findById(id).get().getLogo();
+			byte[] imageData = jobsRepo.findById(id).get().getOrganization().getLogo();
 		    if (imageData != null) {
 		        return Base64.getEncoder().encodeToString(imageData);
 		    }

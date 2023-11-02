@@ -22,24 +22,35 @@
 				<form th:action="@{/dummyaction}" method="post" id="myForm">
 					<div class="mb-3">
 						<label for="exampleInputEmail1" class="form-label">Username</label>
-						<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username"
-							name="username">
+						<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+							placeholder="Enter username" name="username">
 					</div>
 					<div class="mb-3">
 						<label for="exampleInputEmail1" class="form-label">Email</label>
-						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email to get an OTP"
-							name="email">
+						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+							placeholder="Enter email to get an OTP" name="email">
 					</div>
 					<div class="mb-3">
 						<label for="exampleInputPassword1" class="form-label">password</label>
-						<input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Enter password">
+						<input type="password" class="form-control" id="exampleInputPassword1" name="password"
+							placeholder="Enter password">
 					</div>
 					<div class="text-center">
-						<button class="btn btn-primary" id="otpBtn">Get OTP</button>
+						<p  style="font-size: 18px;font-weight: bold;color: limegreen;" >
+							Have no account get OTP !
+						</p>
+						<button class="btn btn-primary" id="otpBtn" style="width: 100%;">Get OTP</button>
 					</div>
 					<div class="text-center" style="margin-top: 10px;">
-						<p style="font-size: 18px;font-weight: bold;color: limegreen;">Already have an account login !</p>
-						<button  class="btn btn-primary" id="loginBtn">Login</button>
+						<a data-bs-toggle="collapse" style="font-size: 18px;color: limegreen;cursor: pointer;" href="#collapseExample" role="button"
+							aria-expanded="false" aria-controls="collapseExample">
+							Already have an account login !
+						</a>
+						<div class="collapse" id="collapseExample" style="border: none;">
+							<div class="card card-body" style="border: none;">
+								<button class="btn btn-primary" id="loginBtn">Login</button>
+							</div>
+						</div>
 					</div>
 
 				</form>
@@ -51,8 +62,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
-		<script>
-			document.getElementById("otpBtn").addEventListener("click", function () {
+	<script>
+		document.getElementById("otpBtn").addEventListener("click", function () {
 			let form = document.getElementById("myForm");
 			form.action = "/sendotp";
 			form.submit();
@@ -63,7 +74,9 @@
 			form.action = "/directlogin";
 			form.submit();
 		});
-		</script>
+
+
+	</script>
 </body>
 
 </html>
